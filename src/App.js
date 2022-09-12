@@ -7,6 +7,11 @@ import Header from './components/header/header';
 import Book from './components/book/book';
 import Dashboard from './dashboard/dashboard';
 import BookSummary from './components/bookSummary/bookSummary';
+import MyCart from './components/myCart/myCart';
+import Router1 from './components/router/router';
+import CustomerDetails from './components/customerDetails/customerDetails';
+import OrderSummary from './components/orderSummary/orderSummary';
+
 
 
 function App() {
@@ -17,8 +22,14 @@ function App() {
        {/* <Lander/>  */}
        {/* <Header/> */}
        {/* <Book/> */}
-       <Dashboard/>
+       {/* <Dashboard/> */}
        {/* <BookSummary/> */}
+       {/* <MyCart/> */}
+      
+        <Router1 />
+        {/* <CustomerDetails/> */}
+        {/* <OrderSummary/> */}
+      
 
        
     </div>

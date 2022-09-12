@@ -5,8 +5,10 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { logIn } from '../service/userService';
+import { useNavigate } from "react-router-dom";
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
+
 
 const useStyle = makeStyles({
   LoginPageContainer: {
@@ -109,6 +111,7 @@ const useStyle = makeStyles({
 
 function Login() {
   const classes = useStyle()
+  const navigate = useNavigate()
   const [userInput, setUserInput] = React.useState({ email: "", password: "" })
   const [regexObj, setRegexObj] = React.useState({ emailBorder: false, emailHelper: "", passwordBorder: false, passwordHelper: "" })
 
@@ -164,7 +167,8 @@ function Login() {
     if (emailTest === true && passwordTest === true) {
       logIn(userInput).then((response) => {
         console.log(response);
-        localStorage.setItem("accessToken", response.data.result.accessToken)
+        localStorage.setItem("token", response.data.result.accessToken)
+        navigate('/dashboard')
       }).catch((error) => { console.log(error) })
       console.log("log in succesfull")
     }

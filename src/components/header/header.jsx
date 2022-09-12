@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineSharp from '@mui/icons-material/PersonOutlineSharp';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from "react-router-dom";
 
 const useStyle = makeStyles({
     blankBox1: {
@@ -107,8 +108,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-function Header() {
+function Header(props) {
     const classes = useStyle()
+    const navigate = useNavigate()
+    const openCart = () =>{
+        navigate('/mycart')
+    }
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: "#A03037" }}>
@@ -146,7 +151,7 @@ function Header() {
                             <Typography id="profileName">Profile</Typography>
                         </IconButton>
                     </Box>
-                    <Box className={classes.CartBox}>
+                    <Box className={classes.CartBox} onClick={openCart}>
                         <IconButton className={classes.cartIcon}
                             size="large"
                             color="inherit"

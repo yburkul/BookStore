@@ -9,6 +9,7 @@ import { getbook } from '../components/service/dataService';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import BookSummary from '../components/bookSummary/bookSummary';
+import MyCart from '../components/myCart/myCart';
 
 const useStyle = makeStyles({
     Book_Box: {
@@ -135,7 +136,7 @@ const useStyle = makeStyles({
     }
 })
 
-function Dashboard() {
+function Dashboard(props) {
     const classes = useStyle()
     const [bookList, setbookList] = useState([])
     const [display, setDisplay] = useState(false)
@@ -161,14 +162,14 @@ function Dashboard() {
         }).catch((error => console.log(error)))
 
     }, [])
-
+    
     return (
         <Box>
             <Header />
             <Box className={classes.Book_DropDown}>                
                 <Box className={classes.items}>
                     <span id='books'>Books</span>
-                    <span id='items'>(128 items)</span>
+                    <span id='items'>(30 items)</span>
                 </Box>
                 <Box className={classes.dropDown}>
                     <Button id='dropdown' aria-haspopup="true" variant="outlined" disableElevation
@@ -180,7 +181,7 @@ function Dashboard() {
             <Box className={classes.Book_Box}>
                 {
                     display ? <BookSummary bookName={inputFields.bookName} author={inputFields.author}
-                        discountPrice={inputFields.discountPrice} price={inputFields.price} />
+                        discountPrice={inputFields.discountPrice} price={inputFields.price} _id={inputFields._id}/>
                         : bookList.map(
                             (book) => (<Box onClick={() => openSummary(book)}><Book book={book}
                             // autoRefresh={autoRefresh}

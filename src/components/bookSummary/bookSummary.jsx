@@ -1,19 +1,21 @@
 import { Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '@mui/material/Button';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import { addNoOfCart, addToCart, addToWhishList } from '../service/dataService';
+
 
 const useStyle = makeStyles({
     MainBookSummary: {
         width: "72vw",
         height: "120vh",
-        position:"relative",
-        bottom:"70px",
-        left:"15px",
-        backgroundColor:"#ffff"
+        position: "relative",
+        bottom: "70px",
+        left: "15px",
+        backgroundColor: "#ffff"
     },
     BookDetailsBox: {
         width: "100%",
@@ -21,8 +23,6 @@ const useStyle = makeStyles({
         // border: "1px solid green",
         display: "flex",
         flexDirection: "row",
-        // position:"relative",
-        // bottom:"30px"
     },
     Home: {
         width: "100%",
@@ -30,14 +30,14 @@ const useStyle = makeStyles({
         // border: "1px solid green",
         display: "flex",
         flexDirection: "row",
-        alignItems:"center",
-        "& #home":{
-            color:"#9D9D9D",
-            fontSize:"13px"
+        alignItems: "center",
+        "& #home": {
+            color: "#9D9D9D",
+            fontSize: "13px"
         },
-        "& #book1":{
-            color:"#0A0102",
-            fontSize:"13px"
+        "& #book1": {
+            color: "#0A0102",
+            fontSize: "13px"
         }
     },
     Book_img: {
@@ -110,6 +110,14 @@ const useStyle = makeStyles({
             width: "160px",
             borderRadius: "0",
             backgroundColor: "#333333"
+        },
+        "& #whislist1": {
+            width: "160px",
+            height: "40px",
+            borderRadius: "0",
+            backgroundColor: "#fff",
+            border: "1px solid #DCDCDC",
+            color:"red"
         }
     },
     Book_info: {
@@ -203,7 +211,7 @@ const useStyle = makeStyles({
             textDecoration: "line-through",
             position: "relative",
             left: "9px",
-            bottom:"4px"
+            bottom: "4px"
         },
     },
     book_info: {
@@ -458,10 +466,89 @@ const useStyle = makeStyles({
         top: "7px",
         left: "30px"
     },
+    Add_item: {
+        width: "160px",
+        height: "40px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        "& #negative1": {
+            width: "38px",
+            height: "38px",
+            color: "#DBDBDB",
+             border: "1px solid #DBDBDB",
+            borderRadius: "50%",
+            fontSize: "25px",
+            display: "flex",
+            flexDirection:"row",
+            justifyContent: "space-around",
+            backgroundColor:"#FAFAFA"
+        },
+        "& #one1": {
+            width: "60px",
+            height: "35px",
+            color: "#333232",
+            fontSize: "20px",
+            border: "1px solid #DBDBDB",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor:"#FAFAFA"
+        },
+        "& #plus1": {
+            width: "38px",
+            height: "38px",
+            color: "#333232",
+            fontSize:"25px",
+            border: "1px solid #DBDBDB",
+            borderRadius: "50%",
+            display: "flex",
+            flexDirection:"row",
+            justifyContent: "space-around",
+            borderColor:"#DBDBDB",
+            backgroundColor:"#FAFAFA"           
+        },
+    },
 })
 
 function BookSummary(props) {
     const classes = useStyle()
+    const [numberOfcart, setNumberOfCart] = useState(false)
+    const [addwhishList, setaddwhishList] = useState(false)
+    const [bookQty, setBookQty] = useState(1)
+
+    const addItem = () => {
+        setNumberOfCart(true)
+        console.log(props._id)
+        addToCart(props._id).then((response) => {
+            console.log(response)
+        }).catch((error => console.log(error)))
+        console.log("Added in cart")
+    }
+
+    const addWhisListItem = () => {
+        setaddwhishList(true)
+        console.log(props._id)
+        addToWhishList(props._id).then((response) => {
+            console.log(response)
+        }).catch((error => console.log(error)))
+        console.log("Added in whishlist")        
+    }
+
+    const incrBookCount = () => {       
+        setBookQty(bookQty + 1)
+    }
+
+    const decrBookCount = () => {
+        if (bookQty > 1) {
+            setBookQty(bookQty - 1)
+        }
+        else {
+            setBookQty(1)
+        }
+    }   
+
     return (
         <Box className={classes.MainBookSummary}>
             <Box className={classes.Home}>
@@ -484,8 +571,20 @@ function BookSummary(props) {
                         </Box>
                     </Box>
                     <Box className={classes.Buttons}>
-                        <Button variant="contained" id="bag">Add to Bag</Button>
-                        <Button variant="contained" id='whislist' startIcon={<FavoriteOutlinedIcon />}>Whislist</Button>
+                        {
+                            numberOfcart ? 
+                            <Box className={classes.Add_item}>
+                                <span id='negative1' onClick={decrBookCount} >-</span>
+                                <span id='one1'>{bookQty}</span>
+                                <span id='plus1' onClick={incrBookCount} >+</span>
+                            </Box> :
+                                <Button variant="contained" id="bag" onClick={addItem}>Add to Bag</Button>
+                        }
+                        {
+                             addwhishList ? <FavoriteOutlinedIcon id='whislist1'/>:
+                        
+                        <Button variant="contained" id='whislist' startIcon={<FavoriteOutlinedIcon />}
+                            onClick={addWhisListItem}>Whislist</Button>}
                     </Box>
                 </Box>
                 <Box className={classes.Book_info}>
