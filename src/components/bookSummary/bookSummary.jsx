@@ -7,7 +7,6 @@ import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { addNoOfCart, addToCart, addToWhishList } from '../service/dataService';
 
-
 const useStyle = makeStyles({
     MainBookSummary: {
         width: "72vw",
@@ -117,7 +116,7 @@ const useStyle = makeStyles({
             borderRadius: "0",
             backgroundColor: "#fff",
             border: "1px solid #DCDCDC",
-            color:"red"
+            color: "red"
         }
     },
     Book_info: {
@@ -477,13 +476,13 @@ const useStyle = makeStyles({
             width: "38px",
             height: "38px",
             color: "#DBDBDB",
-             border: "1px solid #DBDBDB",
+            border: "1px solid #DBDBDB",
             borderRadius: "50%",
             fontSize: "25px",
             display: "flex",
-            flexDirection:"row",
+            flexDirection: "row",
             justifyContent: "space-around",
-            backgroundColor:"#FAFAFA"
+            backgroundColor: "#FAFAFA"
         },
         "& #one1": {
             width: "60px",
@@ -494,20 +493,20 @@ const useStyle = makeStyles({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor:"#FAFAFA"
+            backgroundColor: "#FAFAFA"
         },
         "& #plus1": {
             width: "38px",
             height: "38px",
             color: "#333232",
-            fontSize:"25px",
+            fontSize: "25px",
             border: "1px solid #DBDBDB",
             borderRadius: "50%",
             display: "flex",
-            flexDirection:"row",
+            flexDirection: "row",
             justifyContent: "space-around",
-            borderColor:"#DBDBDB",
-            backgroundColor:"#FAFAFA"           
+            borderColor: "#DBDBDB",
+            backgroundColor: "#FAFAFA"
         },
     },
 })
@@ -527,27 +526,48 @@ function BookSummary(props) {
         console.log("Added in cart")
     }
 
-    const addWhisListItem = () => {
+    const addWhisListItem = (id) => {
         setaddwhishList(true)
         console.log(props._id)
         addToWhishList(props._id).then((response) => {
             console.log(response)
         }).catch((error => console.log(error)))
-        console.log("Added in whishlist")        
+        console.log("Added in whishlist")
     }
 
-    const incrBookCount = () => {       
+    const incrBookCount = () => {
         setBookQty(bookQty + 1)
+        let obj = {
+            quantityToBuy: bookQty + 1
+        }
+        console.log("=====obj=====", obj)
+        console.log(props._id)
+        addNoOfCart(props._id, obj).then((response) => {
+            console.log(response)
+        }).catch((error => console.log(error)))
     }
 
     const decrBookCount = () => {
         if (bookQty > 1) {
             setBookQty(bookQty - 1)
+            let obj = {
+                quantityToBuy: bookQty - 1
+            }
+            console.log("=====obj=====", obj)
+            console.log(props._id)
+            addNoOfCart(props._id, obj).then((response) => {
+                console.log(response)
+            }).catch((error => console.log(error)))
         }
         else {
             setBookQty(1)
+            setNumberOfCart(false)
         }
-    }   
+    }
+
+    const RemoveFromWhishList = () => {
+        setaddwhishList(false)
+    }
 
     return (
         <Box className={classes.MainBookSummary}>
@@ -572,19 +592,20 @@ function BookSummary(props) {
                     </Box>
                     <Box className={classes.Buttons}>
                         {
-                            numberOfcart ? 
-                            <Box className={classes.Add_item}>
-                                <span id='negative1' onClick={decrBookCount} >-</span>
-                                <span id='one1'>{bookQty}</span>
-                                <span id='plus1' onClick={incrBookCount} >+</span>
-                            </Box> :
+                            numberOfcart ?
+                                <Box className={classes.Add_item}>
+                                    <span id='negative1' onClick={decrBookCount} >-</span>
+                                    <span id='one1'>{bookQty}</span>
+                                    <span id='plus1' onClick={incrBookCount} >+</span>
+                                </Box> :
                                 <Button variant="contained" id="bag" onClick={addItem}>Add to Bag</Button>
                         }
                         {
-                             addwhishList ? <FavoriteOutlinedIcon id='whislist1'/>:
-                        
-                        <Button variant="contained" id='whislist' startIcon={<FavoriteOutlinedIcon />}
-                            onClick={addWhisListItem}>Whislist</Button>}
+                            addwhishList ? <FavoriteOutlinedIcon id='whislist1' onClick={RemoveFromWhishList} />
+                                :
+                                <Button variant="contained" id='whislist' startIcon={<FavoriteOutlinedIcon />}
+                                    onClick={addWhisListItem}>Whislist</Button>
+                        }
                     </Box>
                 </Box>
                 <Box className={classes.Book_info}>

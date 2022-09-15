@@ -6,6 +6,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { useState } from 'react';
+import { getUserAddress } from '../service/dataService';
+const addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
+const cityRegex = /^[A-Z]{1}[a-z]{2,}$/;
+const stateRegex = /^[A-Z]{1}[a-z]{2,}$/;
 
 const useStyle = makeStyles({
     MainBox: {
@@ -171,7 +175,6 @@ const useStyle = makeStyles({
             position: "relative",
             right: "120px",
             top: "8px",
-            fontSize: "12px"
         }
     },
     continue: {
@@ -196,10 +199,106 @@ const useStyle = makeStyles({
 function CustomerDetails(props) {
     const classes = useStyle()
     const [openOrder, setOrder] = useState(false)
+    const [addressDetails, setAddressDetails] = useState({
+        addressType: "",
+        fullAddress: "",
+        city: "",
+        state: ""
+    })
+    const [regexObj, setRegexObj] = React.useState({
+        fullAddressBorder: false,
+        fullAddressHelper: "",
+        cityBorder: false,
+        cityHelper: "",
+        stateBorder: false,
+        stateHelper: ""
+    })
+    const takeType = (event) => {
+        setAddressDetails(prevState => ({
+            ...prevState,
+            addressType: event.target.value
+        }))
+        console.log(event.target.value)
+    }
+    const takeAddress = (event) => {
+        setAddressDetails(prevState => ({
+            ...prevState,
+            fullAddress: event.target.value
+        }))
+        console.log(event.target.value)
+    }
+    const takeCity = (event) => {
+        setAddressDetails(prevState => ({
+            ...prevState,
+            city: event.target.value
+        }))
+        console.log(event.target.value)
+    }
+    const takeState = (event) => {
+        setAddressDetails(prevState => ({
+            ...prevState,
+            state: event.target.value
+        }))
+        console.log(event.target.value)
+    }
 
     const openOrderSummary = () => {
         props.ordersummary()
         setOrder(true)
+
+        let addressTest = addressRegex.test(addressDetails.fullAddress)
+        let cityTest = cityRegex.test(addressDetails.city)
+        let stateTest = stateRegex.test(addressDetails.state)
+
+        if (addressTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                fullAddressBorder: true,
+                fullAddressHelper: "Enter correct Address"
+            }))
+        }
+        else if (addressTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                fullAddressBorder: false,
+                fullAddressHelper: ""
+            }))
+        }
+
+        if (cityTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                cityBorder: true,
+                cityHelper: "Enter correct City"
+            }))
+        }
+        else if (cityTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                cityBorder: false,
+                cityHelper: ""
+            }))
+        }
+        if (stateTest === false) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                stateBorder: true,
+                stateHelper: "Enter correct State"
+            }))
+        }
+        else if (stateTest === true) {
+            setRegexObj(prevState => ({
+                ...prevState,
+                stateBorder: false,
+                stateHelper: ""
+            }))
+        }
+        if (addressTest === true && cityTest === true && stateTest === true) {
+            getUserAddress(addressDetails).then((response) => {
+                console.log(response)
+            }).catch((error) => { console.log(error) })
+            // console.log("--------", addressDetails)
+        }
     };
 
     return (
@@ -225,16 +324,19 @@ function CustomerDetails(props) {
                         </Box>
                         <Box className={classes.details}>
                             <span id="address1">Address</span>
-                            <TextField variant="outlined" size="small" id='addressBox' />
+                            <TextField variant="outlined" size="small" id='addressBox' onChange={takeAddress}
+                                error={regexObj.fullAddressBorder} helperText={regexObj.fullAddressHelper} />
                         </Box>
                         <Box className={classes.CityState}>
                             <Box className={classes.City}>
                                 <span id="city">city/town</span>
-                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} />
+                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} onChange={takeCity}
+                                    error={regexObj.cityBorder} helperText={regexObj.cityHelper} />
                             </Box>
                             <Box className={classes.State}>
                                 <span id="state">State</span>
-                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} />
+                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} onChange={takeState}
+                                    error={regexObj.stateBorder} helperText={regexObj.stateHelper} />
                             </Box>
                         </Box>
                     </Box>
@@ -247,12 +349,13 @@ function CustomerDetails(props) {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
+                                onChange={takeType}
                             >
-                                <FormControlLabel value="home" control={<Radio size="12px" />} sx={{ width: "140px" }} />
-                                <span type="radio" id='text'>Home</span>
-                                <FormControlLabel value="work" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <FormControlLabel value="Home" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <span id='text'>Home</span>
+                                <FormControlLabel value="Work" control={<Radio size="12px" />} sx={{ width: "140px" }} />
                                 <span id='text'>Work</span>
-                                <FormControlLabel value="other" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <FormControlLabel value="Other" control={<Radio size="12px" />} sx={{ width: "140px" }} />
                                 <span id='text'>Other</span>
                             </RadioGroup>
                         </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import { Box, Button } from '@mui/material'
 import PinDropIcon from '@mui/icons-material/PinDrop';
@@ -7,7 +7,7 @@ import Header from '../header/header';
 import { useNavigate } from 'react-router-dom';
 import CustomerDetails from '../customerDetails/customerDetails';
 import OrderSummary from '../orderSummary/orderSummary';
-import { addNoOfCart } from '../service/dataService';
+import { addNoOfCart, getCartbook, removeFromCartList } from '../service/dataService';
 
 const useStyle = makeStyles({
     MainCartBox: {
@@ -17,7 +17,6 @@ const useStyle = makeStyles({
         marginLeft: "180px"
     },
     CartName: {
-        // width: "100px",
         height: "55px",
         // border: "1px solid red",
         display: "flex",
@@ -32,17 +31,16 @@ const useStyle = makeStyles({
         }
     },
     OrderBox: {
-        // width: "100%",
-        height: "250px",
+        height: "auto",
         border: "1px solid #DBDBDB",
     },
     Location: {
         width: "100%",
-        height: "20%",
+        height: "50px",
         // border: "1px solid black",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     cart: {
         width: "40%",
@@ -76,31 +74,29 @@ const useStyle = makeStyles({
         }
     },
     BookCart: {
-        width: "45%",
-        height: "60%",
-        // border: "1px solid green",
+        width: "100%",
+        height: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     bookimg: {
-        width: "15%",
-        height: "45%",
+        width: "50px",
+        height: "60px",
         position: "relative",
-        bottom: "15px",
         left: "25px",
-        // border: "1px solid green",
         "& #book": {
             width: "100%",
             height: "100%"
         }
     },
     bookAdd: {
-        width: "65%",
+        width: "85%",
         height: "100%",
         // border: "1px solid green",
         display: "flex",
         flexDirection: "column",
+        // flexWrap:"wrap",
         justifyContent: "space-around"
     },
     info: {
@@ -135,31 +131,31 @@ const useStyle = makeStyles({
         }
     },
     Additem: {
-        width: "75%",
-        height: "25%",
+        width: "25%",
+        height: "45px",
         // border: "1px solid green",
         position: "relative",
-        top: "10px",
+        top: "4px",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         "& #negative": {
-            width: "24px",
-            height: "24px",
+            width: "20px",
+            height: "20px",
             color: "#DBDBDB",
             border: "1px solid #DBDBDB",
             borderRadius: "50%"
         },
         "& #one": {
-            width: "40px",
-            height: "24px",
+            width: "30px",
+            height: "20px",
             color: "#333232",
             border: "1px solid #DBDBDB",
         },
         "& #plus": {
-            width: "24px",
-            height: "24px",
+            width: "20px",
+            height: "20px",
             color: "#707070",
             border: "1px solid #DBDBDB",
             borderRadius: "50%"
@@ -177,6 +173,8 @@ const useStyle = makeStyles({
         display: "flex",
         flexDirection: "row",
         justifyContent: "end",
+        position: "relative",
+        bottom: "20px",
         "& #order": {
             width: "150px",
             height: "35px",
@@ -186,8 +184,6 @@ const useStyle = makeStyles({
         }
     },
     Address: {
-        //  width: "100%",
-        // height: "10%",
         border: "1px solid #DBDBDB",
         position: "relative",
         top: "20px",
@@ -204,8 +200,6 @@ const useStyle = makeStyles({
         }
     },
     Summary: {
-        // width: "100%",
-        // height: "40px",
         border: "1px solid #DBDBDB",
         position: "relative",
         top: "40px",
@@ -238,7 +232,6 @@ const useStyle = makeStyles({
         justifyContent: "center",
         alignItems: "flex-end",
         color: "#FFFFFF"
-
     },
 })
 
@@ -248,6 +241,7 @@ function MyCart(props) {
     const [order, setOrder] = useState(false)
     const [orders, setOrders] = useState(false)
     const [bookQty, setBookQty] = useState(1)
+    const [cartbookList, setCartbookList] = useState([])
 
     const goToHome = () => {
         navigate('/dashboard')
@@ -255,13 +249,29 @@ function MyCart(props) {
     const placeOrder = () => {
         setOrder(true)
     }
-    const incrementBookCount = () => {        
-        setBookQty(bookQty + 1)       
+    const incrementBookCount = (id) => {
+        setBookQty(bookQty + 1)   
+        let cartObj = {
+             quantityToBuy: bookQty + 1
+        }
+        console.log("=====obj=====",cartObj)
+        console.log(id)
+        addNoOfCart(id, cartObj).then((response) => {
+            console.log(response)
+        }).catch((error => console.log(error)))
     }
 
-    const decrementBookCount = () => {
+    const decrementBookCount = (id) => {
         if (bookQty > 1) {
             setBookQty(bookQty - 1)
+            let obj = {
+                quantityToBuy: bookQty - 1
+            }
+            console.log("=====obj=====",obj)
+            console.log(id)
+            addNoOfCart(id, obj).then((response) => {
+                console.log(response)
+            }).catch((error => console.log(error)))
         }
         else {
             setBookQty(1)
@@ -269,6 +279,23 @@ function MyCart(props) {
     }
     const ordersummary = () => {
         setOrders(true)
+    }
+    useEffect(() => {
+        getCartbook().then((response) => {
+            console.log(response)
+            setCartbookList(response.data.result)
+        }).catch((error => console.log(error)))
+
+    }, [])
+
+    const removeFromCart = (bookId) =>{
+        console.log(bookId, "=====Remove===")
+         let obj = {
+            'cartItem_id':bookId
+        }
+        removeFromCartList(obj).then((response) => {
+            console.log(response.data.result, "=====remove===")
+        }).catch((error => console.log(error)))
     }
 
     return (
@@ -289,28 +316,32 @@ function MyCart(props) {
                                 endIcon={<KeyboardArrowDownIcon sx={{ color: "#DCDCDC" }} />}>Use current location</Button>
                         </Box>
                     </Box>
-                    <Box className={classes.BookCart}>
-                        <Box className={classes.bookimg}>
-                            <img src='../../Assert/Image 11.png' id='book' />
+                    {
+                        cartbookList.map((cart) => (
+                            <Box className={classes.BookCart}>
+                                <Box className={classes.bookimg}>
+                                    <img src='../../Assert/Image 11.png' id='book' />
+                                </Box>
+                                <Box className={classes.bookAdd}>
+                                    <Box className={classes.info}>
+                                        <span id='bookname'>{cart.product_id.bookName}</span>
+                                        <span id='author'>{cart.product_id.author}</span>
+                                        <Box>
+                                            <span id='discount'>Rs.{cart.product_id.price}</span>
+                                            <span id='price'>Rs.{cart.product_id.discountPrice}</span>
+                                        </Box>
+                                    </Box>
+                                    <Box className={classes.Additem}>
+                                        <span id='negative' onClick={()=>decrementBookCount(cart.product_id._id)}>-</span>
+                                        <span id='one'>{bookQty}</span>
+                                        <span id='plus' onClick={()=>incrementBookCount(cart.product_id._id)}>+</span>
 
-                        </Box>
-                        <Box className={classes.bookAdd}>
-                            <Box className={classes.info}>
-                                <span id='bookname'>Don't Make Me Think</span>
-                                <span id='author'>by Steve Krug</span>
-                                <Box>
-                                    <span id='discount'>Rs. 1500</span>
-                                    <span id='price'>Rs.2000</span>
+                                        <span id='remove'onClick={()=>removeFromCart(cart._id)}>Remove</span>
+                                    </Box>
                                 </Box>
                             </Box>
-                            <Box className={classes.Additem}>
-                                <span id='negative' onClick={decrementBookCount}>-</span>
-                                <span id='one'>{bookQty}</span>
-                                <span id='plus' onClick={incrementBookCount}>+</span>
-                                <span id='remove'>Remove</span>
-                            </Box>
-                        </Box>
-                    </Box>
+                            ))
+                    }
                     <Box className={classes.PlaceOrder}>
                         {
                             order ? null : <Button variant="contained" id='order' onClick={placeOrder}>Place order</Button>
@@ -319,13 +350,12 @@ function MyCart(props) {
                 </Box>
                 <Box className={classes.Address}>
                     {
-                        order ? 
-                        <Box>
-                            <CustomerDetails ordersummary={ordersummary} />
-                        </Box>
+                        order ?
+                            <Box>
+                                <CustomerDetails ordersummary={ordersummary} />
+                            </Box>
                             : <span id='address' style={{ height: "40px" }}>Address Details</span>
                     }
-
                 </Box>
                 <Box className={classes.Summary}>
                     {
