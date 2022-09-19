@@ -1,11 +1,14 @@
 import { Box, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { addOrder, getCartbook } from '../service/dataService'
 
 const useStyle = makeStyles({
     MainOrderBox: {
         width: "65vw",
-        height: "35vh",
+        height: "auto",
         // border:"1px solid #DCDCDC",
     },
     OrderName: {
@@ -19,6 +22,7 @@ const useStyle = makeStyles({
         fontWeight: 400,
         position: "relative",
         left: "30px",
+        top: "20px",
     },
     orderInfo: {
         width: "40%",
@@ -29,6 +33,8 @@ const useStyle = makeStyles({
         alignItems: "flex-end",
         position: "relative",
         left: "30px",
+        top: "20px",
+        margin: "20px"
     },
     orderImg: {
         width: "65px",
@@ -55,6 +61,8 @@ const useStyle = makeStyles({
         flexDirection: "column",
         justifyContent: "space-between",
         textAlign: "start",
+        position: "relative",
+        top: "5px",
         "& #title": {
             color: "#0A0102",
             fontSize: "12px"
@@ -89,31 +97,69 @@ const useStyle = makeStyles({
             fontSize: "12px",
             width: "140px",
             height: "32px",
+            position: "relative",
+            bottom: "24px"
         }
     }
 })
-function OrderSummary() {
+
+function OrderSummary(props) {
     const classes = useStyle()
+    const [getOrder, setGetOrder] = useState([])
+    const navigate = useNavigate()
+
+    const OrderDisplay = () => {
+
+        let orderList = [];
+        for (let i = 0; i < getOrder.length; i++) {
+            let obj = {
+                product_id: getOrder[i].product_id._id,
+                product_name: getOrder[i].product_id.bookName,
+                product_quantity: getOrder[i].quantityToBuy,
+                product_price: getOrder[i].product_id.discountPrice,
+            }
+            orderList.push(obj);
+        }
+        console.log(orderList, "-------order list----")
+        let orderObj = { orders: orderList }
+        addOrder(orderObj).then((response) => {
+            console.log(response)
+            navigate('/orderPlaced')
+        }).catch((error => console.log(error)))
+    }
+
+    useEffect(() => {
+        getCartbook().then((response) => {
+            console.log(response)
+            setGetOrder(response.data.result)
+        }).catch((error => console.log(error)))
+    }, [])
+
     return (
         <Box className={classes.MainOrderBox}>
             <Box className={classes.OrderName}>
                 <span>Order summery</span>
             </Box>
-            <Box className={classes.orderInfo}>
-                <Box className={classes.orderImg}>
-                    <img src='../../Assert/Image 11.png' id='orderimg' />
-                </Box>
-                <Box className={classes.orderDetails}>
-                    <Box className={classes.orderBookDetails}>
-                        <span id='title'>Don't Make Me Think</span>
-                        <span id='smalltitle'>by Steve Krug</span>
-                        <span id='dic'>Rs. 1500</span>
-                        <span id='p'>Rs.2000</span>
+            {
+                getOrder.map((items) => (
+
+                    <Box className={classes.orderInfo}>
+                        <Box className={classes.orderImg}>
+                            <img src='../../Assert/Image 11.png' id='orderimg' />
+                        </Box>
+                        <Box className={classes.orderDetails}>
+                            <Box className={classes.orderBookDetails}>
+                                <span id='title'>{items.product_id.bookName}</span>
+                                <span id='smalltitle'>{items.product_id.author}</span>
+                                <span id='dic'>Rs.{items.product_id.discountPrice}</span>
+                                <span id='p'>Rs.{items.product_id.price}</span>
+                            </Box>
+                        </Box>
                     </Box>
-                </Box>
-            </Box>
+                ))
+            }
             <Box className={classes.Checkout}>
-                <Button variant="contained" id='checkout' >Checkout</Button>
+                <Button variant="contained" id='checkout' onClick={OrderDisplay}>Checkout</Button>
             </Box>
         </Box>
     )

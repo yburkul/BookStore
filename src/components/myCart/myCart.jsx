@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { makeStyles } from '@mui/styles'
 import { Box, Button } from '@mui/material'
 import PinDropIcon from '@mui/icons-material/PinDrop';
@@ -96,7 +96,6 @@ const useStyle = makeStyles({
         // border: "1px solid green",
         display: "flex",
         flexDirection: "column",
-        // flexWrap:"wrap",
         justifyContent: "space-around"
     },
     info: {
@@ -127,7 +126,8 @@ const useStyle = makeStyles({
             fontSize: "9px",
             position: "relative",
             left: "10px",
-            bottom: "2px"
+            bottom: "2px",
+            textDecoration: "line-through",
         }
     },
     Additem: {
@@ -242,6 +242,8 @@ function MyCart(props) {
     const [orders, setOrders] = useState(false)
     const [bookQty, setBookQty] = useState(1)
     const [cartbookList, setCartbookList] = useState([])
+    const [quantity, setQuantity] = useState([])
+    const [refreshPage, setRefreshPage] = useReducer(x => x + 1, 0)
 
     const goToHome = () => {
         navigate('/dashboard')
@@ -249,28 +251,30 @@ function MyCart(props) {
     const placeOrder = () => {
         setOrder(true)
     }
-    const incrementBookCount = (id) => {
-        setBookQty(bookQty + 1)   
-        let cartObj = {
-             quantityToBuy: bookQty + 1
-        }
-        console.log("=====obj=====",cartObj)
-        console.log(id)
-        addNoOfCart(id, cartObj).then((response) => {
+    const incrementBookCount = (id,qty) => {
+        setBookQty(bookQty => bookQty + 1)   
+        let obj = {
+            cartItem_id: id,
+            quantityToBuy: qty + 1,
+        }       
+        console.log("=====obj=====", obj)
+        addNoOfCart(obj).then((response) => {
             console.log(response)
+            setRefreshPage()
         }).catch((error => console.log(error)))
     }
 
-    const decrementBookCount = (id) => {
-        if (bookQty > 1) {
-            setBookQty(bookQty - 1)
+    const decrementBookCount = (id, qty) => {
+        if (bookQty > 2) {
+            setBookQty(bookQty => bookQty - 1)
             let obj = {
-                quantityToBuy: bookQty - 1
-            }
-            console.log("=====obj=====",obj)
-            console.log(id)
-            addNoOfCart(id, obj).then((response) => {
+                cartItem_id: id,
+                quantityToBuy: qty - 1,
+            }          
+            console.log("=====obj=====", obj)
+            addNoOfCart(obj).then((response) => {
                 console.log(response)
+                setRefreshPage()
             }).catch((error => console.log(error)))
         }
         else {
@@ -284,17 +288,17 @@ function MyCart(props) {
         getCartbook().then((response) => {
             console.log(response)
             setCartbookList(response.data.result)
+            setQuantity(response.data.result)
         }).catch((error => console.log(error)))
-
-    }, [])
+    }, [refreshPage])
 
     const removeFromCart = (bookId) =>{
-        console.log(bookId, "=====Remove===")
          let obj = {
             'cartItem_id':bookId
         }
         removeFromCartList(obj).then((response) => {
             console.log(response.data.result, "=====remove===")
+            setRefreshPage()
         }).catch((error => console.log(error)))
     }
 
@@ -332,10 +336,9 @@ function MyCart(props) {
                                         </Box>
                                     </Box>
                                     <Box className={classes.Additem}>
-                                        <span id='negative' onClick={()=>decrementBookCount(cart.product_id._id)}>-</span>
-                                        <span id='one'>{bookQty}</span>
-                                        <span id='plus' onClick={()=>incrementBookCount(cart.product_id._id)}>+</span>
-
+                                        <span id='negative' onClick={()=>decrementBookCount(cart._id,cart.quantityToBuy)}>-</span>
+                                        <span id='one'>{cart.quantityToBuy}</span>
+                                        <span id='plus' onClick={()=>incrementBookCount(cart._id,cart.quantityToBuy)}>+</span>
                                         <span id='remove'onClick={()=>removeFromCart(cart._id)}>Remove</span>
                                     </Box>
                                 </Box>

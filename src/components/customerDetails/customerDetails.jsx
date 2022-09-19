@@ -297,7 +297,7 @@ function CustomerDetails(props) {
             getUserAddress(addressDetails).then((response) => {
                 console.log(response)
             }).catch((error) => { console.log(error) })
-            // console.log("--------", addressDetails)
+            
         }
     };
 

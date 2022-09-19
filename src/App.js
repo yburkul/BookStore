@@ -11,6 +11,7 @@ import MyCart from './components/myCart/myCart';
 import Router1 from './components/router/router';
 import CustomerDetails from './components/customerDetails/customerDetails';
 import OrderSummary from './components/orderSummary/orderSummary';
+import OrderPlaced from './components/orderPlaced/orderPlaced';
 
 
 
@@ -29,7 +30,7 @@ function App() {
         <Router1 />
         {/* <CustomerDetails/> */}
         {/* <OrderSummary/> */}
-      
+      {/* <OrderPlaced/> */}
 
        
     </div>

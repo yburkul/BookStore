@@ -12,7 +12,6 @@ import BookSummary from '../components/bookSummary/bookSummary';
 
 const useStyle = makeStyles({
     Book_Box: {
-        // border: '1px solid red',
         width: '73vw',
         height: 'auto',
         margin: '0px',
@@ -22,7 +21,6 @@ const useStyle = makeStyles({
         marginLeft: '170px',
     },
     Book_DropDown: {
-        //  border: '1px solid red',
         width: '73vw',
         height: '12vh',
         display: 'flex',
@@ -35,7 +33,6 @@ const useStyle = makeStyles({
     items: {
         width: "20%",
         height: '35%',
-        // border: '1px solid red',
         display: 'flex',
         flexDirection: 'row',
         position: "relative",
@@ -150,7 +147,6 @@ function Dashboard(props) {
             console.log(response)
             setbookList(response.data.result)
         }).catch((error => console.log(error)))
-
     }, [])
 
     return (
@@ -170,12 +166,12 @@ function Dashboard(props) {
             </Box>
             <Box className={classes.Book_Box}>
                 {
-                    display ? <BookSummary bookName={inputFields.bookName} author={inputFields.author}
+                    display ? <BookSummary
+                        bookName={inputFields.bookName} author={inputFields.author}
                         discountPrice={inputFields.discountPrice} price={inputFields.price} _id={inputFields._id}
                     />
                         : bookList.map(
-                            (book) => (<Box onClick={() => openSummary(book)}><Book book={book}
-                            /></Box>))
+                            (book) => (<Box onClick={() => openSummary(book)}><Book book={book} /></Box>))
                 }
             </Box>
             <Box className={classes.BottomBar}>

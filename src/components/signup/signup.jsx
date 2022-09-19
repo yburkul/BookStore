@@ -6,12 +6,8 @@ import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { register } from '../service/userService';
 const fullNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
-// const fullNameRegex = /^([A-Z]{1}[a-z]{2,})+( )+([A-Z]{1}[a-z]{2,})*$/;
-//const fullNameRegex = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/
-//const fullNameRegex = /^[A-Z]{1}[A-Za-z]{3,}([A-Z]{1}[A-Za-z]{3,})*([A-Z]{1}[A-Za-z]{3,})*$/;
 const emailIdRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordsRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
-//const mobileNumberRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 const mobileNumberRegex = /^[6-9]{1}[0-9]{9}$/;
 
 const useStyle = makeStyles({
@@ -24,12 +20,12 @@ const useStyle = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  // SignUpPage_Image: {
-  //   width: "100%",
-  //   height: "100%",
-  //   // border: "1px solid blue",
+  SignUpPage_Image: {
+    width: "100%",
+    height: "100%",
+    // border: "1px solid blue",
 
-  // },
+  },
   SignUp: {
     width: "100%",
     height: "100%",
@@ -248,7 +244,7 @@ function Signup() {
   return (
 
     <Box className={classes.SignUpPageContainer}>
-      {/* <Box className={classes.SignUpPage_Image}> */}
+      <Box className={classes.SignUpPage_Image}>
       <Paper elevation={0} className={classes.SignUp}>
         <Box className={classes.SignUp_info}>
           <Box className={classes.NameBox}>
@@ -277,7 +273,7 @@ function Signup() {
           </Box>
         </Box>
       </Paper>
-      {/* </Box> */}
+      </Box>
     </Box>
   )
 }
