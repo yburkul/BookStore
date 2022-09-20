@@ -4,6 +4,7 @@ import Dashboard from '../../dashboard/dashboard'
 import Lander from '../../pages/lander'
 import Login from '../login/login'
 import MyCart from '../myCart/myCart'
+import Whishlist from '../myWhishList/whishlist'
 import OrderPlaced from '../orderPlaced/orderPlaced'
 
 function Router1() {
@@ -15,6 +16,7 @@ function Router1() {
                   <Route path='/dashboard' element={<Dashboard/>}/>
                   <Route path='/mycart' element={<MyCart/>}/>
                   <Route path='/orderPlaced' element={<OrderPlaced/>}/>
+                  <Route path='/WishList' element={<Whishlist/>}/>
               </Routes>
           </Router>
       </div>

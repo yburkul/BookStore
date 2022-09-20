@@ -12,6 +12,7 @@ import Router1 from './components/router/router';
 import CustomerDetails from './components/customerDetails/customerDetails';
 import OrderSummary from './components/orderSummary/orderSummary';
 import OrderPlaced from './components/orderPlaced/orderPlaced';
+import Whishlist from './components/myWhishList/whishlist';
 
 
 
@@ -31,7 +32,7 @@ function App() {
         {/* <CustomerDetails/> */}
         {/* <OrderSummary/> */}
       {/* <OrderPlaced/> */}
-
+      {/* <Whishlist/> */}
        
     </div>
   );

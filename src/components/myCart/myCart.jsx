@@ -265,7 +265,7 @@ function MyCart(props) {
     }
 
     const decrementBookCount = (id, qty) => {
-        if (bookQty > 2) {
+        if (bookQty > 0) {
             setBookQty(bookQty => bookQty - 1)
             let obj = {
                 cartItem_id: id,
@@ -304,7 +304,7 @@ function MyCart(props) {
 
     return (
         <Box>
-            <Header />
+            <Header/>
             <Box className={classes.MainCartBox}>
                 <Box className={classes.CartName}>
                     <span id='home' onClick={goToHome}>Home /</span>

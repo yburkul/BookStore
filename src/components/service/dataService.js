@@ -46,3 +46,8 @@ export const addOrder = (order) =>{
     let response = axios.post('https://bookstore.incubation.bridgelabz.com/bookstore_user/add/order', order, bookconfig)
     return response
 }
+export const removewhishList = (obj) =>{
+    let response = axios.delete(`https://bookstore.incubation.bridgelabz.com/bookstore_user/remove_wishlist_item/${obj.product_id}`,
+    bookconfig)
+    return response
+}
