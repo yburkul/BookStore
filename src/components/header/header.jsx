@@ -108,7 +108,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-function Header(props) {
+function Header({searchHandler,searchTerm}) {
     const classes = useStyle()
     const navigate = useNavigate()
     const openCart = () =>{
@@ -139,6 +139,8 @@ function Header(props) {
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                             sx={{ color: "#9D9D9D" }}
+                            value={searchTerm}
+                            onChange={searchHandler}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 0.4 }} />

@@ -216,7 +216,7 @@ const useStyle = makeStyles({
         }
     },
     MainFooter: {
-        width: "100vw",
+        width: "98.79vw",
         height: "8vh",
         // border:"1px solid red",
         backgroundColor: "#2E1D1E",

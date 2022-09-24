@@ -4,6 +4,7 @@ import React, { useEffect, useReducer, useState } from 'react'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Header from '../header/header';
 import { getWishList, removewhishList } from '../service/dataService';
+import { useNavigate } from 'react-router-dom';
 
 const useStyle = makeStyles({
   WhishlistBox: {
@@ -117,7 +118,7 @@ const useStyle = makeStyles({
     }
   },
   MainFooter: {
-    width: "100vw",
+    width: "98.79vw",
     height: "8vh",
     backgroundColor: "#2E1D1E",
     position: "relative",
@@ -138,6 +139,7 @@ function Whishlist() {
   const classes = useStyle()
   const [mywishList, setMywhishList] = useState([])
   const [refreshPage, setRefreshPage] = useReducer(x => x + 1, 0)
+  const navigate = useNavigate()
   useEffect(() => {
     getWishList().then((response) => {
       console.log(response)
@@ -154,13 +156,16 @@ function Whishlist() {
       setRefreshPage()
     }).catch((error => console.log(error)))
   }
+  const goToHome = () =>{
+    navigate('/dashboard')
+  }
 
   return (
     <Box>
       <Header />
       <Box className={classes.WhishlistBox}>
         <Box className={classes.HomeWhish}>
-          <span id='wish'>Home /</span>
+          <span id='wish' onClick={goToHome}>Home /</span>
           <span id='list'>My WhishList</span>
         </Box>
         <Box className={classes.MainWhish}>

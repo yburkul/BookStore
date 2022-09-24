@@ -6,9 +6,8 @@ import Header from '../components/header/header';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { getbook } from '../components/service/dataService';
-import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import BookSummary from '../components/bookSummary/bookSummary';
+import Pagination from '@mui/material/Pagination';
 
 const useStyle = makeStyles({
     Book_Box: {
@@ -80,7 +79,7 @@ const useStyle = makeStyles({
     Bar: {
         width: "62%",
         height: "50%",
-        // border:"1px solid red",
+        // border: "1px solid red",
         display: 'flex',
         flexDirection: 'row',
         justifyContent: "space-evenly",
@@ -90,31 +89,9 @@ const useStyle = makeStyles({
         fontSize: "10px",
         color: "#878787",
         opacity: 1,
-        "& #arrow1": {
-            color: "#E2E2E2",
-            border: "1px solid #E2E2E2",
-            opacity: 1,
-            borderRadius: "50%"
-        },
-        "& #arrow2": {
-            color: "#0A0102",
-            border: "1px solid #E2E2E2",
-            opacity: 1,
-            borderRadius: "50%"
-        },
-        "& #one": {
-            color: "#ffff",
-            backgroundColor: "#8F2B2F",
-            width: "25px",
-            height: "25px",
-            fontSize: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-        }
     },
     MainFooter: {
-        width: "100vw",
+        width: "98.79vw",
         height: "8vh",
         // border:"1px solid red",
         backgroundColor: "#2E1D1E"
@@ -136,6 +113,13 @@ function Dashboard(props) {
     const [bookList, setbookList] = useState([])
     const [display, setDisplay] = useState(false)
     const [inputFields, setInputFields] = useState({})
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(8)
+    const [searchTerm, setSearchTerm] = useState("")
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPosts = bookList.filter(book =>book.bookName.includes(searchTerm)).slice(firstPostIndex, lastPostIndex)
+
     const openSummary = (bookObj) => {
         console.log(bookObj, "this is the book details")
         setInputFields(bookObj)
@@ -149,9 +133,14 @@ function Dashboard(props) {
         }).catch((error => console.log(error)))
     }, [])
 
+    const searchHandler = (event) => {
+        setSearchTerm(event.target.value)
+      }
+      console.log(setSearchTerm, '....value searched')
+
     return (
         <Box>
-            <Header />
+            <Header searchHandler={searchHandler} searchTerm={searchTerm}/>
             <Box className={classes.Book_DropDown}>
                 <Box className={classes.items}>
                     <span id='books'>Books</span>
@@ -170,27 +159,15 @@ function Dashboard(props) {
                         bookName={inputFields.bookName} author={inputFields.author}
                         discountPrice={inputFields.discountPrice} price={inputFields.price} _id={inputFields._id}
                     />
-                        : bookList.map(
+                        : currentPosts.map(
                             (book) => (<Box onClick={() => openSummary(book)}><Book book={book} /></Box>))
                 }
             </Box>
             <Box className={classes.BottomBar}>
                 {
                     display ? null :
-
-                        <Box className={classes.Bar}>
-                            <KeyboardArrowLeftRoundedIcon id='arrow1' />
-                            <span id="one">1</span>
-                            <span>2</span>
-                            <span>3</span>
-                            <span>4</span>
-                            <span>5</span>
-                            <span>6</span>
-                            <span>7</span>
-                            <span>8</span>
-                            <span>...</span>
-                            <span>18</span>
-                            <KeyboardArrowRightRoundedIcon id='arrow2' />
+                        <Box className={classes.Bar} >
+                            <Pagination count={4} onChange={(e, page) => setCurrentPage(page)} />
                         </Box>
                 }
             </Box>
