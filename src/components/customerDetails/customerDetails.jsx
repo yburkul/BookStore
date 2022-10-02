@@ -166,14 +166,16 @@ const useStyle = makeStyles({
         display: "flex"
     },
     Diff_Type: {
-        width: "70%",
+        width: "100%",
         height: "50%",
         // border: "1px solid black",
         "& #text": {
+            // border: "1px solid black",
+            width: "20%",
             color: "#0A0102",
             fontSize: "12px",
             position: "relative",
-            right: "120px",
+            right: "80px",
             top: "8px",
         }
     },
@@ -194,6 +196,466 @@ const useStyle = makeStyles({
             // border:"1px solid #A03037"
         }
     },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        MainBox: {
+            width: "78vw",
+            height:"auto"
+        },
+        Details: {
+            width: "100%",
+            height: "100%",
+            // border: "1px solid #DCDCDC",
+        },
+        HeadName: {
+            width: "90%",
+            height: "10%",
+            // border: "1px solid green",           
+            fontSize: "16px",
+            position: "relative",
+            left: "5px",
+            top:"10px",
+            "& #newAddress": {
+                // border: "1px solid green",
+                fontSize: "10px",
+                width: "100px",
+                height: "30px",
+                position: "relative",
+                left: "15px",
+            }
+        },
+        Address: {
+            width: "95%",
+            height: "70%",
+            // border: "1px solid red",
+            position: "relative",
+            left: "10px",
+        },
+        NamePhone: {
+            width: "100%",
+            height: "52%",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+        },
+        Name: {
+            width: "98%",
+        },
+        Phone: {
+            width: "98%",
+            position: "relative",
+            top: "8px",
+            "& #phone": {
+                left: "0px",
+            }
+        },
+        details: {
+            width: "98%",
+            height: "80px",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            position: "relative",
+            top: "12px",
+            "& #addressBox": {
+                height: "25px",
+            },
+            "& #address1": {
+                fontSize: "12px",
+            }
+        },
+        CityState: {
+            width: "100%",
+            height: "140px",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap:"wrap",
+            // justifyContent: "space-between"
+        },
+        City: {
+            width: "98%",
+            height: "60px",
+            // border: "1px solid black",
+            position: "relative",
+            top: "8px",
+            "& #city": {
+                display: "flex",
+                color: "#0A0102",
+                fontSize: "12px"
+            }
+        },
+        State: {
+            width: "98%",
+            height: "60px",
+            // border: "1px solid black",
+            position: "relative",
+            top: "8px",
+            "& #state": {
+                position: "relative",
+                left: "0px",
+            }
+        },
+        Type: {
+            width: "98%",
+            height: "auto",
+            // border: "1px solid black",
+            position: "relative",
+            top: "10px",
+            left: "10px"
+        },
+        TypeName: {
+            width: "30%",
+            height: "30%",
+            // border: "1px solid black"
+            fontSize: "12px",
+        },
+        Diff_Type: {
+            // width: "99%",
+            // border: "1px solid black"
+            "& #text": {
+                fontSize: "10px",
+                position: "relative",
+                right: "20px",
+                top: "8px",
+                width:"20px"
+                // border: "1px solid black",
+            }
+        },
+        continue: {
+            width: "96%",
+            height: "45px",
+            // border: "1px solid black",
+            bottom: "0px",
+            "& #continue": {
+                fontSize: "10px",
+                width: "100px",
+                height: "25px",
+                // border:"1px solid #A03037"
+            }
+        },
+
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        MainBox: {
+            width: "78vw",
+            height:"auto"
+        },
+        Details: {
+            width: "100%",
+            height: "100%",
+            // border: "1px solid #DCDCDC",
+        },
+        HeadName: {
+            width: "90%",
+            height: "10%",
+            // border: "1px solid green",           
+            fontSize: "16px",
+            position: "relative",
+            left: "10px",
+            top:"10px",
+            "& #newAddress": {
+                // border: "1px solid green",
+                fontSize: "10px",
+                width: "130px",
+                height: "30px",
+                position: "relative",
+                left: "15px",
+            }
+        },
+        Address: {
+            width: "95%",
+            height: "70%",
+            // border: "1px solid red",
+            position: "relative",
+            left: "10px",
+        },
+        NamePhone: {
+            width: "100%",
+            height: "52%",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+        },
+        Name: {
+            width: "98%",
+        },
+        Phone: {
+            width: "98%",
+            position: "relative",
+            top: "8px",
+            "& #phone": {
+                left: "0px",
+            }
+        },
+        details: {
+            width: "98%",
+            height: "70px",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            position: "relative",
+            top: "12px",
+            "& #addressBox": {
+                height: "25px",
+            },
+            "& #address1": {
+                fontSize: "12px",
+            }
+        },
+        CityState: {
+            width: "100%",
+            height: "140px",
+            // border: "1px solid black",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap:"wrap",
+            // justifyContent: "space-between"
+        },
+        City: {
+            width: "98%",
+            height: "60px",
+            // border: "1px solid black",
+            position: "relative",
+            top: "8px",
+            "& #city": {
+                display: "flex",
+                color: "#0A0102",
+                fontSize: "12px"
+            }
+        },
+        State: {
+            width: "98%",
+            height: "60px",
+            // border: "1px solid black",
+            position: "relative",
+            top: "8px",
+            "& #state": {
+                position: "relative",
+                left: "0px",
+            }
+        },
+        Type: {
+            width: "98%",
+            height: "auto",
+            // border: "1px solid black",
+            position: "relative",
+            top: "10px",
+            left: "10px"
+        },
+        TypeName: {
+            width: "30%",
+            height: "30%",
+            // border: "1px solid black",
+            fontSize: "12px",
+        },
+        Diff_Type: {
+            // width: "300px",
+            // border: "1px solid black",
+            display:"flex",
+            flexDirection:"row",
+            "& #text": {
+                fontSize: "10px",
+                position: "relative",
+                right: "20px",
+                top: "8px",
+                width: "30px",
+                // border: "1px solid black",
+            }
+        },
+        continue: {
+            width: "96%",
+            height: "50%",
+            // border: "1px solid black",
+            bottom: "15px",
+            "& #continue": {
+                fontSize: "10px",
+                width: "100px",
+                height: "25px",
+                // border:"1px solid #A03037"
+            }
+        },
+
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        MainBox: {
+            width: "78vw",
+            height: "45vh",
+            // border: "1px solid red",
+            display: "flex",
+            alignItems: "center",
+        },
+        Details: {
+            width: "100%",
+            height: "85%",
+            // border: "1px solid #DCDCDC",
+        },
+        // HeadName: {
+        //     width: "94%",
+        //     height: "10%",
+        //     // border: "1px solid green",
+        //     color: "#333232",
+        //     fontSize: "17px",
+        //     display: "flex",
+        //     flexDirection: "row",
+        //     justifyContent: "space-between",
+        //     fontWeight: "500",
+        //     position: "relative",
+        //     left: "25px",
+        //     "& #newAddress": {
+        //         color: "#A03037",
+        //         backgroundColor: "#ffff",
+        //         textTransform: "none",
+        //         fontSize: "12px",
+        //         width: "150px",
+        //         height: "35px",
+        //         border: "1px solid #A03037"
+        //     }
+        // },
+        // Address: {
+        //     width: "65%",
+        //     height: "70%",
+        //     // border: "1px solid red",
+        //     position: "relative",
+        //     left: "40px",
+        // },
+        // NamePhone: {
+        //     width: "100%",
+        //     height: "28%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "row",
+        //     justifyContent: "space-between"
+        // },
+        // Name: {
+        //     width: "48%",
+        //     height: "80%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     position: "relative",
+        //     top: "8px",
+        //     "& #name": {
+        //         display: "flex",
+        //         color: "#0A0102",
+        //         fontSize: "12px"
+        //     }
+        // },
+        // Phone: {
+        //     width: "48%",
+        //     height: "80%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     position: "relative",
+        //     top: "8px",
+        //     "& #phone": {
+        //         display: "flex",
+        //         color: "#0A0102",
+        //         fontSize: "12px",
+        //         position: "relative",
+        //         left: "8px",
+        //     }
+        // },
+        // details: {
+        //     width: "100%",
+        //     height: "45%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     justifyContent: "flex-start",
+        //     position: "relative",
+        //     top: "8px",
+        //     "& #addressBox": {
+        //         height: "65px",
+        //     },
+        //     "& #address1": {
+        //         width: "10%",
+        //         display: "flex",
+        //         color: "#0A0102",
+        //         fontSize: "12px",
+        //     }
+        // },
+        // CityState: {
+        //     width: "100%",
+        //     height: "28%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "row",
+        //     justifyContent: "space-between"
+        // },
+        // City: {
+        //     width: "48%",
+        //     height: "80%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     position: "relative",
+        //     top: "8px",
+        //     "& #city": {
+        //         display: "flex",
+        //         color: "#0A0102",
+        //         fontSize: "12px"
+        //     }
+        // },
+        // State: {
+        //     width: "48%",
+        //     height: "80%",
+        //     // border: "1px solid black",
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     position: "relative",
+        //     top: "8px",
+        //     "& #state": {
+        //         display: "flex",
+        //         color: "#0A0102",
+        //         fontSize: "12px",
+        //         position: "relative",
+        //         left: "8px",
+        //     }
+        // },
+        TypeName: {
+            width: "30%",
+            height: "30%",
+            // border: "1px solid black",
+            color: "#0A0102",
+            fontSize: "12px",
+            display: "flex"
+        },
+        Diff_Type: {
+            width: "100%",
+            height: "50%",
+            // border: "1px solid black",
+            "& #text": {
+                color: "#0A0102",
+                fontSize: "12px",
+                position: "relative",
+                right: "50px",
+                top: "8px",
+            }
+        },
+        continue: {
+            width: "100%",
+            height: "50%",
+            // border: "1px solid black",
+            display: "flex",
+            justifyContent: "end",
+            position: "relative",
+            bottom: "0px",
+            top:"10px",
+            "& #continue": {
+                color: "#FFFFFF",
+                backgroundColor: "#3371B5",
+                fontSize: "12px",
+                width: "150px",
+                height: "35px",
+                // border:"1px solid #A03037"
+            }
+        },
+    }
 })
 
 function CustomerDetails(props) {
@@ -243,8 +705,8 @@ function CustomerDetails(props) {
     }
 
     const openOrderSummary = () => {
-        props.ordersummary()
-        setOrder(true)
+        // props.ordersummary()
+        // setOrder(true)
 
         let addressTest = addressRegex.test(addressDetails.fullAddress)
         let cityTest = cityRegex.test(addressDetails.city)
@@ -296,8 +758,10 @@ function CustomerDetails(props) {
         if (addressTest === true && cityTest === true && stateTest === true) {
             getUserAddress(addressDetails).then((response) => {
                 console.log(response)
+                 props.ordersummary()
+        setOrder(true)
             }).catch((error) => { console.log(error) })
-            
+
         }
     };
 
@@ -315,7 +779,7 @@ function CustomerDetails(props) {
                         <Box className={classes.NamePhone}>
                             <Box className={classes.Name}>
                                 <span id="name">Full Name</span>
-                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} />
+                                <TextField variant="outlined" size="small" sx={{ height: "40px" }} id='full'/>
                             </Box>
                             <Box className={classes.Phone}>
                                 <span id="phone">Mobile number</span>
@@ -351,11 +815,11 @@ function CustomerDetails(props) {
                                 name="row-radio-buttons-group"
                                 onChange={takeType}
                             >
-                                <FormControlLabel value="Home" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <FormControlLabel value="Home" control={<Radio size="12px" />}  />
                                 <span id='text'>Home</span>
-                                <FormControlLabel value="Work" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <FormControlLabel value="Work" control={<Radio size="12px" />}  />
                                 <span id='text'>Work</span>
-                                <FormControlLabel value="Other" control={<Radio size="12px" />} sx={{ width: "140px" }} />
+                                <FormControlLabel value="Other" control={<Radio size="12px" />}  />
                                 <span id='text'>Other</span>
                             </RadioGroup>
                         </Box>

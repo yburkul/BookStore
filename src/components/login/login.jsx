@@ -105,6 +105,136 @@ const useStyle = makeStyles({
       color: "#343434",
       textTransform: "none",
     }
+  },
+
+  ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+    
+    LoginPageContainer: {
+      width: "100%",
+      height: "30%",
+    },
+    LoginPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    Login: {
+      width: "100%",
+      height: "50%",
+    },
+    Login_info: {
+      width: "82%",
+      height: "70%",
+      position: "relative",
+      left: "5px"
+    },
+    EmailBox: {
+      position: "relative",
+      top: "0px",
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "10px",  
+    },
+    Login_Button: {
+      width: "100%",
+      position: "relative",
+      top: "20px",
+    },
+    OrText: {
+      width: "100%",
+      position: "relative",
+      top: "30px",
+    },
+    Button2: {
+      position: "relative",
+      top: "40px",
+    },
+  },
+  ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+    
+    LoginPageContainer: {
+      width: "100%",
+      height: "100%",
+    },
+    LoginPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    Login: {
+      width: "100%",
+      height: "50%",
+    },
+    Login_info: {
+      width: "82%",
+      height: "70%",
+      position: "relative",
+      left: "5px"
+    },
+    EmailBox: {
+      position: "relative",
+      top: "0px",
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "10px",  
+    },
+    Login_Button: {
+      width: "100%",
+      position: "relative",
+      top: "20px",
+    },
+    OrText: {
+      width: "100%",
+      position: "relative",
+      top: "35px",
+    },
+    Button2: {
+      position: "relative",
+      top: "50px",
+    },
+  },
+  ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+    
+    LoginPageContainer: {
+      width: "100%",
+      height: "100%",
+    },
+    LoginPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    Login: {
+      width: "100%",
+      height: "60%",
+    },
+    Login_info: {
+      width: "100%",
+      height: "70%",
+      position: "relative",
+      left: "5px"
+    },
+    EmailBox: {
+      position: "relative",
+      top: "0px",
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "15px",  
+    },
+    Login_Button: {
+      width: "100%",
+      position: "relative",
+      top: "25px",
+    },
+    OrText: {
+      width: "100%",
+      position: "relative",
+      top: "40px",
+    },
+    Button2: {
+      position: "relative",
+      top: "60px",
+    },
   }
 });
 

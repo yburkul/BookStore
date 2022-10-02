@@ -6,7 +6,8 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { addNoOfCart, addToCart, addToWhishList, getCartbook,getWishList } from '../service/dataService';
-
+import {useDispatch} from 'react-redux'
+import { bookList } from '../../redux/bookAction';
 const useStyle = makeStyles({
     MainBookSummary: {
         width: "72vw",
@@ -509,6 +510,585 @@ const useStyle = makeStyles({
             backgroundColor: "#FAFAFA"
         },
     },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        MainBookSummary: {
+            height: "100%",
+            position: "relative",
+            bottom: "45px",
+            left: "0px",
+        },
+        BookDetailsBox: {
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+        },
+        Home: {
+            width: "220px",
+            height: "50px",
+            // border: "1px solid green",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+        },
+        Book_img: {
+            width: "220px",
+            height: "300px",
+        },
+        SmallImg: {
+            display:"none"
+        },
+        ImgBox: {
+            width: "100%",
+            height: "85%",
+        },
+        Img: {
+            width: "80%",
+            height: "85%",
+        },
+        Buttons: {
+            width: "100%",
+            height: "39px",
+            left: "0px",
+            "& #bag": {
+                width: "110px",
+                fontSize:"12px"                
+            },
+            "& #whislist": {
+                width: "100px",
+                left:"0px",
+                fontSize:"12px"
+            },
+            "& #whislist1": {
+                width: "90px",
+                height: "30px",
+                position: "relative",
+                left: "1px",
+                top:"5px"
+            }
+        },
+        Book_info: {
+            width: "100%",
+            height: "auto",
+            display: "flex",
+            flexDirection: "column",
+        },
+        bookDetails: {
+            width: "220px",
+            height: "120px",
+            position: "relative",
+            left: "0px",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+            position: "relative",
+            top: "5px"
+        },
+        RatingBox: {
+            width: "50%",
+            height: "22%",
+            display: "flex",
+            flexDirection: "row",
+        },
+        Rating: {
+            width: "32%",
+            height: "68%",
+            position: "relative",
+            top: "4px",
+        },
+        Rating1: {
+            fontSize: "10px",
+            position: "relative",
+            left: "8px",
+        },
+        book_info: {
+            width: "200px",
+            height: "20%",
+            border: "1px solid #9D9D9D",
+            position: "relative",
+            left: "0px",
+            borderLeft: "none",
+            borderRight: "none"
+        },
+        dotDetails: {
+            width: "220px",
+            height: "20%",           
+        },
+        detail: {
+            width: "220px",
+            height: "52%",
+            position: "relative",
+            bottom: "6px",
+            left: "5px"
+        },
+        book_feedback: {
+            width: "220px",
+            height: "30%",
+            position: "relative",
+            left: "0px"
+        },
+        feedbackName: {
+            width: "220px",
+            height: "15%",
+            position: "relative",
+            top: "5px"
+        },
+        feedbackBox: {
+            width: "220px",
+            height: "120px",
+            position: "relative",
+            top: "20px",
+        },
+        feed: {
+            width: "220px",
+            height: "15%",
+            textAlign: "start",
+            fontSize: "13px",
+            position: "relative",
+            left: "10px",
+            top: "0px"
+        },
+        star: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "10px",
+            "& #star": {
+                fontSize: "15px"
+            }
+        },
+        input: {
+            width: "95%",
+            height: "40%",
+            position: "relative",
+            left: "10px",
+            "& #review": {
+                width: "120px",
+            }
+        },
+        submit: {
+            width: "97%",
+            height: "25%",
+            "& #submit": {
+                width: "75px",
+                height: "22px",
+            }
+        },
+        Reviews: {
+            width: "220px",
+            height: "30%",
+            position: "relative",
+            left: "0px",
+            top:"35px"
+        },
+        Review1: {
+            width: "220px",
+            height: "50%",
+        },
+        name1: {
+            width: "50%",
+            height: "25%",
+        },
+        starRating1: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "20px",
+        },
+        reviewFeedback1: {
+            width: "220px",
+            height: "40%",
+            top: "13px",
+            left: "20px"
+        },
+        Review2: {
+            width: "220px",
+            height: "50%",
+            position:"relative",
+            top:"30px"
+        },
+        name2: {
+            width: "50%",
+            height: "25%",
+            "& #nameAC": {
+                bottom: "2px",
+            },
+        },
+        starRating2: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "20px",
+        },
+        reviewFeedback2: {
+            width: "92%",
+            height: "40%",
+            position: "relative",
+            top: "7px",
+            left: "20px"
+        },
+        Add_item: {
+            width: "115px",
+            height: "30px",           
+            "& #negative1": {
+                width: "35px",
+                height: "35px",
+                position: "relative",              
+                top:"5px",
+            },
+            "& #one1": {
+                width: "60px",
+                height: "30px",
+                position: "relative",              
+                top:"5px",
+            },
+            "& #plus1": {
+                width: "35px",
+                height: "35px",
+                position: "relative",              
+                top:"5px",
+            },
+        },
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        MainBookSummary: {
+            width: "82vw",
+            height: "100%",
+            position: "relative",
+            bottom: "45px",
+            left: "0px",
+        },
+        BookDetailsBox: {
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            position:"relative",
+            left:"30px"
+        },
+        Home: {
+            width: "220px",
+            height: "50px",
+            position:"relative",
+            left:"30px"
+        },
+        Book_img: {
+            width: "260px",
+            height: "300px",
+        },
+        SmallImg: {
+            display:"none"
+        },
+        ImgBox: {
+            width: "100%",
+            height: "85%",
+        },
+        Img: {
+            width: "80%",
+            height: "85%",
+        },
+        Buttons: {
+            width: "100%",
+            height: "39px",
+            left: "0px",
+            "& #bag": {
+                width: "120px",
+                fontSize:"12px"                
+            },
+            "& #whislist": {
+                width: "120px",
+                left:"0px",
+                fontSize:"12px"
+            },
+            "& #whislist1": {
+                width: "100px",
+                height: "30px",
+                position: "relative",
+                left: "1px",
+                top:"5px"
+            }
+        },
+        Book_info: {
+            width: "100%",
+            height: "auto",
+        },
+        bookDetails: {
+            width: "260px",
+            height: "120px",
+            position: "relative",
+            left: "0px",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+            position: "relative",
+            top: "5px"
+        },
+        RatingBox: {
+            width: "50%",
+            height: "25%",
+        },
+        Rating: {
+            width: "32%",
+            height: "66%",
+            position: "relative",
+            top: "4px",
+        },
+        Rating1: {
+            fontSize: "10px",
+            position: "relative",
+            left: "8px",
+        },
+        book_info: {
+            width: "260px",
+            height: "20%",
+            border: "1px solid #9D9D9D",
+            position: "relative",
+            left: "0px",
+            borderLeft: "none",
+            borderRight: "none"
+        },
+        dotDetails: {
+            width: "260px",
+            height: "20%",           
+        },
+        detail: {
+            width: "260px",
+            height: "52%",
+            position: "relative",
+            bottom: "6px",
+            left: "5px"
+        },
+        book_feedback: {
+            width: "260px",
+            height: "30%",
+            position: "relative",
+            left: "0px"
+        },
+        feedbackName: {
+            width: "260px",
+            height: "15%",
+            position: "relative",
+            top: "5px"
+        },
+        feedbackBox: {
+            width: "260px",
+            height: "120px",
+            position: "relative",
+            top: "20px",
+        },
+        feed: {
+            width: "260px",
+            height: "15%",
+            position: "relative",
+            left: "10px",
+            top: "0px"
+        },
+        star: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "10px",
+            "& #star": {
+                fontSize: "15px"
+            }
+        },
+        input: {
+            width: "95%",
+            height: "40%",
+            position: "relative",
+            left: "10px",
+            "& #review": {
+                width: "130px",
+            }
+        },
+        submit: {
+            width: "97%",
+            height: "25%",
+        },
+        Reviews: {
+            width: "260px",
+            height: "30%",
+            position: "relative",
+            left: "0px",
+            top:"35px"
+        },
+        Review1: {
+            width: "260px",
+            height: "50%",
+        },
+        name1: {
+            width: "50%",
+            height: "25%",
+        },
+        starRating1: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "20px",
+        },
+        reviewFeedback1: {
+            width: "260px",
+            height: "40%",
+            top: "13px",
+            left: "20px"
+        },
+        Review2: {
+            width: "260px",
+            height: "50%",
+            position:"relative",
+            top:"30px"
+        },
+        name2: {
+            width: "50%",
+            height: "25%",
+            display: "flex",
+            alignItems: "flex-end",
+           
+        },
+        starRating2: {
+            width: "35%",
+            height: "15%",
+            position: "relative",
+            left: "20px",
+        },
+        reviewFeedback2: {
+            width: "92%",
+            height: "40%",
+            // border: "1px solid black",
+            position: "relative",
+            top: "7px",
+            left: "20px"
+        },
+        Add_item: {
+            width: "125px",
+            height: "30px",           
+            "& #negative1": {
+                width: "35px",
+                height: "35px",
+                position: "relative",              
+                top:"5px",
+            },
+            "& #one1": {
+                width: "60px",
+                height: "30px",
+                position: "relative",              
+                top:"5px",
+            },
+            "& #plus1": {
+                width: "35px",
+                height: "35px",
+                position: "relative",              
+                top:"5px",
+            },
+        },
+
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        MainBookSummary: {
+            width: "88vw",
+            height: "100vh",
+            position: "relative",
+            bottom: "80px",
+            left: "0px",
+        },
+        BookDetailsBox: {
+            width: "100%",
+            height: "100%",
+        },
+        Home: {
+            width: "100%",
+            height: "8%",
+        },
+        Book_img: {
+            width: "50%",
+            height: "50%",
+        },
+        SmallImg: {
+            width: "10%",
+            height: "70%",
+        },
+        SmallImg1: {
+            width: "80%",
+            height: "10%",
+            "& #book1": {
+                width: "25px",
+                height: "30px",
+            }
+        },
+        SmallImg2: {
+            width: "80%",
+            height: "10%",
+            "& #book1": {
+                width: "25px",
+                height: "30px",
+            }
+        },
+        ImgBox: {
+            width: "85%",
+            height: "85%",
+        },
+        Img: {
+            width: "80%",
+            height: "85%",
+        },
+        Buttons: {
+            width: "85%",
+            height: "9%",
+            position: "relative",
+            left: "35px",
+            "& #bag": {
+                width: "120px",
+            },
+            "& #whislist": {
+                width: "120px",
+            },
+            "& #whislist1": {
+                width: "130px",
+                height: "40px",
+            }
+        },
+        Book_info: {
+            width: "55%",
+            height: "100%",
+        },
+        bookDetails: {
+            width: "92%",
+            height: "18%",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+        },
+        RatingBox: {
+            width: "50%",
+            height: "22%",
+        },
+        Rating: {
+            width: "19%",
+            height: "66%",
+        },
+        Rating1: {
+            fontSize: "10px",
+            position: "relative",
+            left: "6px",
+            "& #rating1": {
+                fontSize: "15px",
+                color: "#878787",
+            },
+        },
+        input: {
+            width: "95%",
+            height: "40%",
+            "& #review": {
+                width: "200px",
+            }
+        },
+        Add_item: {
+            width: "120px",
+        },
+    }
 })
 
 function BookSummary(props) {
@@ -523,13 +1103,14 @@ function BookSummary(props) {
     const [wishBookId, setWishBookId] = useState([])
 
     const [refreshPage, setRefreshPage] = useReducer(x => x + 1, 0)
-
+    const dispatch = useDispatch()
     const addItem = () => {
         setNumberOfCart(true)
         console.log(props._id)
         addToCart(props._id).then((response) => {
             console.log(response)
             setRefreshPage()
+            dispatch(bookList(response))
         }).catch((error => console.log(error)))
         console.log("Added in cart")
     }
@@ -553,7 +1134,7 @@ function BookSummary(props) {
         console.log("=====obj=====", obj)
         console.log(props._id)
         addNoOfCart(obj).then((response) => {
-            console.log(response)
+            console.log(response)           
         }).catch((error => console.log(error)))
     }
 

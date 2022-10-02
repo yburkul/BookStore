@@ -19,7 +19,7 @@ const useStyle = makeStyles({
     Page_Image: {
         width: "50vw",
         height: "65vh",
-        //border: "1px solid red",
+        // border: "1px solid red",
     },
     ImagePage: {
         width: "100%",
@@ -59,7 +59,7 @@ const useStyle = makeStyles({
     Login: {
         width: "52%",
         height: "100%",
-        //border: "1px solid blue",
+        // border: "1px solid blue",
         display: "flex",
         flexDirection: "column",
         position: "relative",
@@ -90,6 +90,74 @@ const useStyle = makeStyles({
         position: "relative",
         left: "30px",
         top: "5px",
+    },
+
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        Page_Image: {
+            width: "70%",
+            height: "75vh",
+        },
+        ImageBox: {
+            display:"none"
+        },
+        Login: {
+            width: "100%",
+            height: "100%",
+            left: "0px",
+        },
+        ComponentBox: {
+            width: "88%",
+            height: "84%",
+            position: "relative",
+            left: "10px",
+            top: "5px",
+        },
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        Page_Image: {
+            width: "70%",
+            height: "55vh",
+        },
+        ImageBox: {
+            display:"none"
+        },
+        Login: {
+            width: "100%",
+            height: "100%",
+            left: "0px",
+        },
+        ComponentBox: {
+            width: "88%",
+            height: "84%",
+            position: "relative",
+            left: "10px",
+            top: "5px",
+        },
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        Page_Image: {
+            width: "40vw",
+            height: "65vh",
+            marginRight:"260px"
+        },
+        ImageBox: {
+            width: "65%",
+            height: "42%",
+        },
+        Login: {
+            width: "92%",
+            height: "72%",
+            position: "relative",
+            left: "320px",
+        },
+        ComponentBox: {
+            width: "80%",
+            height: "84%",
+            display: "flex",
+            position: "relative",
+            left: "30px",
+            top: "5px",
+        },
     }
 });
 

@@ -105,6 +105,140 @@ const useStyle = makeStyles({
         justifyContent: "center",
         alignItems: "flex-end",
         color: "#FFFFFF"
+    },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        Book_Box: {
+            width: '33vw',
+            height: 'auto',
+            margin: '0px',
+            marginLeft: '60px',
+        },
+        Book_DropDown: {
+            width: '63vw',
+            height: '10vh',
+            marginLeft: '60px',
+        },
+        items: {
+            width: "100%",
+            height: '70%',
+            display: 'flex',
+            flexDirection: 'row',
+            position: "relative",
+            left: "40px",
+        },
+        dropDown: {
+            display: "none"
+        },
+        BottomBar: {
+            width: "90%",
+            height: "12vh",
+            marginLeft: '0px',
+        },
+        Bar: {
+            width: "82%",
+            height: "50%",
+            left: "5px",
+            fontSize: "10px",
+        },
+        MainFooter: {
+            width: "100%",
+            height: "28px",
+        },
+        footer: {           
+            width: "100%",
+            height: "100%",
+            fontSize: "10px",
+            position: "relative",
+            bottom:"7px"
+        },
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        Book_Box: {
+            width: '88vw',
+            height: 'auto',
+            margin: '0px',
+            marginLeft: '60px',
+        },
+        Book_DropDown: {
+            width: '83vw',
+            height: '8vh',
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: '50px',
+        },
+        items: {
+            width: "33%",
+            height: '60%',
+            left: "0px",
+        },
+        dropDown: {
+            width: "240px",
+            position: "relative",
+            left: "12px",
+        },
+        BottomBar: {
+            width: "90%",
+            height: "12vh",
+            marginLeft: '10px',
+        },
+        Bar: {
+            width: "82%",
+            height: "50%",
+            left: "15px",
+            fontSize: "10px",
+        },
+        MainFooter: {
+            height: "28px",
+        },
+        footer: {
+            width: "100%",
+            height: "100%",
+            fontSize: "12px",
+            position: "relative",
+            bottom:"7px"
+        },
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        Book_Box: {
+            width: '88vw',
+            height: 'auto',
+            margin: '0px',
+            marginLeft: '60px',
+            // border:"1px solid red"
+        },
+        Book_DropDown: {
+            width: '87vw',
+            height: '8vh',
+            marginLeft: '60px',
+        },
+        items: {
+            width: "33%",
+            height: '50%',
+            left: "0px",
+        },
+        dropDown: {
+            width: "240px",
+            position: "relative",
+            left: "15px",
+        },
+        BottomBar: {
+            width: "890px",
+            height: "70px",
+            marginLeft: '10px',
+        },
+        Bar: {
+            width: "82%",
+            height: "50%",
+        },
+        MainFooter: {
+            width: "100%",
+            height: "25px",
+        },
+        footer: {
+            width: "100%",
+            height: "100%",
+            fontSize: "14px",
+        },
     }
 })
 
@@ -118,7 +252,7 @@ function Dashboard(props) {
     const [searchTerm, setSearchTerm] = useState("")
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentPosts = bookList.filter(book =>book.bookName.includes(searchTerm)).slice(firstPostIndex, lastPostIndex)
+    const currentPosts = bookList.filter(book => book.bookName.includes(searchTerm)).slice(firstPostIndex, lastPostIndex)
 
     const openSummary = (bookObj) => {
         console.log(bookObj, "this is the book details")
@@ -135,12 +269,12 @@ function Dashboard(props) {
 
     const searchHandler = (event) => {
         setSearchTerm(event.target.value)
-      }
-      console.log(setSearchTerm, '....value searched')
+    }
+    console.log(setSearchTerm, '....value searched')
 
     return (
         <Box>
-            <Header searchHandler={searchHandler} searchTerm={searchTerm}/>
+            <Header searchHandler={searchHandler} searchTerm={searchTerm} />
             <Box className={classes.Book_DropDown}>
                 <Box className={classes.items}>
                     <span id='books'>Books</span>
@@ -173,7 +307,7 @@ function Dashboard(props) {
             </Box>
             <Box className={classes.MainFooter}>
                 <Box className={classes.footer}>
-                    <span>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</span>
+                    <span>Copyright © 2022, Bookstore Private Limited. All Rights Reserved</span>
                 </Box>
             </Box>
         </Box>

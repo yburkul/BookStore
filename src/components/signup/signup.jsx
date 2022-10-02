@@ -103,6 +103,146 @@ const useStyle = makeStyles({
       backgroundColor: "#A03037",
     }
   },
+  ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+    SignUpPageContainer: {
+      width: "400px",
+      height: "300px",
+    },
+    SignUpPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    SignUp: {
+      width: "100%",
+      height: "100%",      
+    },
+    SignUp_info: {
+      width: "82%",
+      height: "100%",     
+      position: "relative",
+      left: "10px",
+      bottom:"3px",
+    },
+    NameBox: {
+      position: "relative",
+      top: "0px",
+      "& #full-name":{
+        height:"20%",
+      }
+    },
+    EmailBox: {
+      position: "relative",
+      top: "3px",
+      "& #email-name":{
+        height:"20%",
+      }
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "5px",
+      "& #pass-box":{
+        height:"20%",
+      }
+  
+    },
+    NumberBox: {
+      position: "relative",
+      top: "10px",
+      "& #mobile-box":{
+        height:"20%",
+      }
+    },
+    Login_Button: {
+      position: "relative",
+      top: "20px",
+    },
+
+  },
+  ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+    SignUpPageContainer: {
+      width: "400px",
+      height: "300px",
+    },
+    SignUpPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    SignUp: {
+      width: "95%",
+      height: "100%", 
+      position: "relative",
+      top: "10px",     
+    },
+    SignUp_info: {
+      width: "82%",
+      height: "100%",     
+      position: "relative",
+      left: "20px",
+    },
+    NameBox: {
+      position: "relative",
+      top: "0px",
+    },
+    EmailBox: {
+      position: "relative",
+      top: "10px",
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "16px",
+    },
+    NumberBox: {
+      position: "relative",
+      top: "25px"
+    },
+    Login_Button: {
+      position: "relative",
+      top: "45px",
+    },
+
+  },
+  ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+    SignUpPageContainer: {
+      width: "400px",
+      height: "300px",
+    },
+    SignUpPage_Image: {
+      width: "100%",
+      height: "100%",  
+    },
+    SignUp: {
+      width: "100%",
+      height: "100%", 
+      position: "relative",
+      top: "10px",     
+    },
+    SignUp_info: {
+      width: "100%",
+      height: "100%",     
+      position: "relative",
+      left: "0px",
+    },
+    NameBox: {
+      position: "relative",
+      top: "0px",
+    },
+    EmailBox: {
+      position: "relative",
+      top: "15px",
+    },
+    PasswordBox: {
+      position: "relative",
+      top: "25px",
+    },
+    NumberBox: {
+      position: "relative",
+      top: "40px",
+    },
+    Login_Button: {
+      position: "relative",
+      top: "60px",
+    },
+  }
 });
 
 
@@ -249,22 +389,22 @@ function Signup() {
         <Box className={classes.SignUp_info}>
           <Box className={classes.NameBox}>
             <span id="Name-text">Full Name</span>
-            <TextField variant="outlined" size="small" sx={{ height: "47px" }}
+            <TextField variant="outlined" size="small" sx={{ height: "47px" }} id="full-name"
               onChange={takeFullName} error={regexObject.fullNameBorder} helperText={regexObject.fullNameHelper} />
           </Box>
           <Box className={classes.EmailBox}>
             <span id="Email-text">Email id</span>
-            <TextField variant="outlined" size="small" sx={{ height: "47px" }}
+            <TextField variant="outlined" size="small" sx={{ height: "47px" }} id="email-name"
               onChange={takeEmailId} error={regexObject.emailidBorder} helperText={regexObject.emailidHelper} />
           </Box>
           <Box className={classes.PasswordBox}>
             <span id='Password-text1'>Password</span>
-            <TextField type="password" variant="outlined" size="small" sx={{ height: "47px" }}
+            <TextField type="password" variant="outlined" size="small" sx={{ height: "47px" }} id="pass-box"
               onChange={takePassword} error={regexObject.passwordBorder} helperText={regexObject.passwordHelper} />
           </Box>
           <Box className={classes.NumberBox}>
             <span id="Number-text">Mobile Number</span>
-            <TextField variant="outlined" size="small" sx={{ height: "47px" }}
+            <TextField variant="outlined" size="small" sx={{ height: "47px" }} id="mobile-box"
               onChange={takeMobileNumber} error={regexObject.mobileNumberBorder} helperText={regexObject.mobileNumberHelper} />
           </Box>
           <Box className={classes.Login_Button}>

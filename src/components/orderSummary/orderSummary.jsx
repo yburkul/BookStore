@@ -100,6 +100,150 @@ const useStyle = makeStyles({
             position: "relative",
             bottom: "24px"
         }
+    },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        MainOrderBox: {
+            width: "75vw",
+            height: "auto",
+        },
+        OrderName: {
+            width: "80%",
+            height: "20%",
+            fontSize: "18px",
+            position: "relative",
+            left: "5px",
+            top: "20px",
+        },
+        orderInfo: {
+            width: "90%",
+            height: "55%",
+            position: "relative",
+            left: "0px",
+            top: "20px",
+            margin: "20px"
+        },
+        orderImg: {
+            width: "65px",
+            height: "85px",
+            "& #orderimg": {
+                width: "100%",
+                height: "90%"
+            }
+        },
+        orderDetails: {
+            width: "175px",
+            height: "90px",
+        },
+        Checkout: {
+            width: "95%",
+            height: "15%",
+            "& #checkout": {
+                fontSize: "11px",
+                width: "110px",
+                height: "26px",
+                position: "relative",
+                bottom: "6px",
+                left:"8px"
+            }
+        },
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        MainOrderBox: {
+            width: "75vw",
+            height: "auto",
+        },
+        OrderName: {
+            width: "80%",
+            height: "20%",
+            fontSize: "18px",
+            position: "relative",
+            left: "15px",
+            top: "20px",
+        },
+        orderInfo: {
+            width: "90%",
+            height: "55%",
+            position: "relative",
+            left: "10px",
+            top: "20px",
+            margin: "20px"
+        },
+        orderImg: {
+            width: "65px",
+            height: "85px",
+            "& #orderimg": {
+                width: "90%",
+                height: "80%"
+            }
+        },
+        orderDetails: {
+            width: "175px",
+            height: "90px",
+        },
+        Checkout: {
+            width: "95%",
+            height: "15%",
+            "& #checkout": {
+                fontSize: "11px",
+                width: "110px",
+                height: "26px",
+                position: "relative",
+                bottom: "10px",
+                left:"9px"
+            }
+        },
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        MainOrderBox: {
+            width: "75vw",
+            height: "auto",
+        },
+        orderInfo: {
+            height: "90px",
+            position: "relative",
+            left: "30px",
+            top: "20px",
+            margin: "20px"
+        },
+        orderImg: {
+            width: "65px",
+            height: "85px",
+        },
+        orderDetails: {
+            width: "175px",
+            height: "90px",
+        },
+        orderBookDetails: {
+            width: "185px",
+            height: "108px",
+            position: "relative",
+            top: "5px",
+            left:"40px",
+            "& #title": {
+                color: "#0A0102",
+                fontSize: "18px"
+            },
+            "& #smalltitle": {
+                fontSize: "14px"
+            },
+            "& #dic": {
+                fontSize: "16px",
+            },
+            "& #p": {
+                fontSize: "14px",
+                position: "relative",
+                left: "65px",
+                bottom: "28px"
+            },
+        },
+        Checkout: {
+            width: "98%",
+            height: "15%", 
+            "& #checkout": {
+                position: "relative",
+                bottom: "16px"                
+            }
+        },
     }
 })
 

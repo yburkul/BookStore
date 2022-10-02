@@ -118,7 +118,114 @@ const useStyle = makeStyles({
             position: "relative",
             left: "6px",
         },
-    }
+    },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        MainBookBox: {
+            width: "58vw",
+            height: "45vh",
+        },
+        Book_info_Box: {
+            width: "92%",
+            height: "92%",
+            border: "1px solid #E2E2E2",
+            position: "relative",
+            left: "5px",
+            "& :hover": {
+                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }
+        },
+        BookBox: {
+            width: "100%",
+            height: "62%",
+            backgroundColor: "#F5F5F5",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "& #book-box-img":{
+                width:"50%",
+            }
+        },
+        BookInfo: {
+            width: "100%",
+            height: "37%",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+        },
+    },
+   
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+
+        MainBookBox: {
+            width: "40vw",
+            height: "45vh",
+        },
+        Book_info_Box: {
+            width: "92%",
+            height: "92%",
+            border: "1px solid #E2E2E2",
+            position: "relative",
+            left: "5px",
+            "& :hover": {
+                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }
+        },
+        BookBox: {
+            width: "100%",
+            height: "62%",
+            backgroundColor: "#F5F5F5",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "& #book-box-img":{
+                width:"50%",
+            }
+        },
+        BookInfo: {
+            width: "100%",
+            height: "37%",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+        },
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        MainBookBox: {
+            width: "22vw",
+            height: "40vh",
+        },
+        Book_info_Box: {
+            width: "92%",
+            height: "92%",
+            border: "1px solid #E2E2E2",
+            position: "relative",
+            left: "5px",
+            "& :hover": {
+                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }
+        },
+        BookBox: {
+            width: "100%",
+            height: "62%",
+            backgroundColor: "#F5F5F5",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "& #book-box-img":{
+                width:"50%",
+            }
+        },
+        BookInfo: {
+            width: "100%",
+            height: "37%",
+        },
+        Info: {
+            width: "100%",
+            height: "87%",
+        },
+    },
 })
 
 function Book(props) {
@@ -129,7 +236,7 @@ function Book(props) {
         <Box className={classes.MainBookBox}>
             <Box className={classes.Book_info_Box}>
                 <Box className={classes.BookBox} >
-                    <img src='../../Assert/Image 11.png' id='book' />
+                    <img src='../../Assert/Image 11.png' id='book-box-img' />
                 </Box>
                 <Box className={classes.BookInfo}>
                     <Box className={classes.Info}>

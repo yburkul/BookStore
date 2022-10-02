@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import CustomerDetails from '../customerDetails/customerDetails';
 import OrderSummary from '../orderSummary/orderSummary';
 import { addNoOfCart, getCartbook, removeFromCartList } from '../service/dataService';
+import { bookList } from '../../redux/bookAction';
+import { useDispatch } from 'react-redux';
 
 const useStyle = makeStyles({
     MainCartBox: {
@@ -233,6 +235,309 @@ const useStyle = makeStyles({
         alignItems: "flex-end",
         color: "#FFFFFF"
     },
+    ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+        MainCartBox: {
+            width: "80vw",
+            height: "auto",
+            marginLeft: "40px"
+        },
+        CartName: {
+            height: "55px",
+        },
+        OrderBox: {
+            height: "auto",
+        },
+        Location: {
+            width: "100%",
+            height: "50px",
+        },
+        cart: {
+            width: "30%",
+            height: "60%",
+            fontSize: "16px",
+            position: "relative",
+            left: "5px",
+        },
+        location: {
+            width: "65%",
+            height: "32px",
+            "& #location": {
+                height:"20px",
+                fontSize: "8px",
+            }
+        },
+        BookCart: {
+            width: "100%",
+            height: "100%",
+        },
+        bookimg: {
+            width: "40px",
+            height: "50px",
+            position: "relative",
+            left: "5px",
+            bottom:"10px",
+            "& #book": {
+                width: "100%",
+                height: "100%"
+            }
+        },
+        bookAdd: {
+            width: "85%",
+            height: "100%",
+        },
+        info: {
+            width: "80%",
+            height: "45%",
+            position: "relative",
+            top: "12px",
+            left:"20px",  
+        },
+        Additem: {
+            width: "65%",
+            height: "45px",
+            position: "relative",
+            top: "4px",
+            left:"20px",
+            "& #negative": {
+                width: "18px",
+                height: "18px",
+            },
+            "& #one": {
+                width: "27px",
+                height: "18px",
+            },
+            "& #plus": {
+                width: "18px",
+                height: "18px",
+            },
+            "& #remove": {
+                fontSize: "12px",
+            },
+        },
+        PlaceOrder: {
+            width: "98%",
+            height: "38px",
+            position: "relative",
+            bottom: "0px",
+            "& #order": {
+                width: "110px",
+                height: "25px",
+                fontSize: "9px",
+            }
+        },
+        MainFooter: {
+            width: "100%",
+            height: "27px",
+        },
+        footer: {
+            width: "100%",
+            height: "100%",
+            fontSize: "10px",
+            position: "relative",
+            bottom: "7px",
+        },
+
+    },
+    ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+        MainCartBox: {
+            width: "78vw",
+            height: "auto",
+            marginLeft: "50px"
+        },
+        CartName: {
+            height: "55px",
+        },
+        OrderBox: {
+            height: "auto",
+        },
+        Location: {
+            width: "100%",
+            height: "50px",
+        },
+        cart: {
+            width: "40%",
+            height: "70%",
+            fontSize: "16px",
+            position: "relative",
+            left: "10px",
+    
+        },
+        location: {
+            width: "55%",
+            height: "42px",
+            "& #location": {
+                height:"30px",
+                fontSize: "10px",
+            }
+        },
+        BookCart: {
+            width: "100%",
+            height: "100%",
+        },
+        bookimg: {
+            width: "40px",
+            height: "50px",
+            position: "relative",
+            left: "20px",
+            bottom:"10px",
+            "& #book": {
+                width: "100%",
+                height: "100%"
+            }
+        },
+        bookAdd: {
+            width: "85%",
+            height: "100%",
+        },
+        info: {
+            width: "80%",
+            height: "45%",
+            position: "relative",
+            top: "12px",
+            left:"20px",
+        },
+        Additem: {
+            width: "47%",
+            height: "45px",
+            position: "relative",
+            top: "4px",
+            left:"20px",
+        },
+        PlaceOrder: {
+            width: "98%",
+            height: "20%",
+            position: "relative",
+            bottom: "10px",
+            "& #order": {
+                width: "110px",
+                height: "25px",
+                fontSize: "9px",
+            }
+        },
+        MainFooter: {
+            width: "100%",
+            height: "27px",
+        },
+        footer: {
+            width: "100%",
+            height: "100%",
+            fontSize: "10px",
+            position: "relative",
+            bottom: "7px",
+        },
+    },
+    ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+        MainCartBox: {
+            width: "80vw",
+            height: "auto",
+            marginLeft: "70px"
+        },
+        CartName: {
+            height: "55px",
+        },
+        OrderBox: {
+            height: "auto",
+            border: "1px solid #DBDBDB",
+        },
+        cart: {
+            fontSize: "20px",
+            left: "25px",
+    
+        },
+        location: {
+            width: "45%",
+            "& #location": {
+                fontSize: "15px",
+                width: "270px",
+            }
+        },
+        bookimg: {
+            width: "70px",
+            height: "80px",
+            position: "relative",
+            left: "25px",
+            "& #book": {
+                width: "100%",
+                height: "100%"
+            }
+        },
+        bookAdd: {
+            width: "80%",
+            height: "120px",
+        },
+        info: {
+            width: "80%",
+            height: "65%",
+            // border: "1px solid green",
+        },
+        Additem: {
+            width: "30%",
+            height: "45px",
+            // border: "1px solid green",
+            "& #remove": {
+                fontSize: "13px",
+            },
+        },
+        PlaceOrder: {
+            width: "98%",
+            height: "20%",
+            // border: "1px solid #DBDBDB",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "end",
+            position: "relative",
+            bottom: "20px",
+            "& #order": {
+                width: "150px",
+                height: "35px",
+                color: "#FFFFFF",
+                fontSize: "12px",
+                backgroundColor: "#3371B5",
+            }
+        },
+        Address: {
+            border: "1px solid #DBDBDB",
+            position: "relative",
+            top: "20px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            "& #address": {
+                color: "#333232",
+                position: "relative",
+                left: "25px",
+                top: "10px",
+                fontSize: "15px",
+                fontWeight: 400,
+            }
+        },
+        Summary: {
+            border: "1px solid #DBDBDB",
+            position: "relative",
+            top: "40px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            "& #summary": {
+                color: "#333232",
+                position: "relative",
+                left: "25px",
+                top: "10px",
+                fontSize: "15px",
+                fontWeight: 400
+            }
+        },
+        MainFooter: {
+            width: "100vw",
+            height: "6vh",
+            position: "relative",
+            top: "300px",
+        },
+        footer: {
+            width: "52%",
+            height: "50%",
+        },
+    }
 })
 
 function MyCart(props) {
@@ -244,6 +549,7 @@ function MyCart(props) {
     const [cartbookList, setCartbookList] = useState([])
     const [quantity, setQuantity] = useState([])
     const [refreshPage, setRefreshPage] = useReducer(x => x + 1, 0)
+    const dispatch = useDispatch()
 
     const goToHome = () => {
         navigate('/dashboard')
@@ -299,6 +605,7 @@ function MyCart(props) {
         removeFromCartList(obj).then((response) => {
             console.log(response.data.result, "=====remove===")
             setRefreshPage()
+            dispatch(bookList(response))
         }).catch((error => console.log(error)))
     }
 
@@ -316,8 +623,8 @@ function MyCart(props) {
                             <span >My cart (1)</span>
                         </Box>
                         <Box className={classes.location}>
-                            <Button variant="contained" id='location' startIcon={<PinDropIcon sx={{ color: "#A03037" }} />}
-                                endIcon={<KeyboardArrowDownIcon sx={{ color: "#DCDCDC" }} />}>Use current location</Button>
+                            <Button variant="contained" id='location' startIcon={<PinDropIcon sx={{ color: "#A03037" }} id='pin'/>}
+                                endIcon={<KeyboardArrowDownIcon sx={{ color: "#DCDCDC" }}id='loc' />}>Use current location</Button>
                         </Box>
                     </Box>
                     {
@@ -368,7 +675,7 @@ function MyCart(props) {
             </Box>
             <Box className={classes.MainFooter}>
                 <Box className={classes.footer}>
-                    <span>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</span>
+                    <span>Copyright © 2022, Bookstore Private Limited. All Rights Reserved</span>
                 </Box>
             </Box>
         </Box>

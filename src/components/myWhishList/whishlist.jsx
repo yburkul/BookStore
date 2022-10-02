@@ -11,7 +11,7 @@ const useStyle = makeStyles({
     width: "62vw",
     height: "auto",
     // border: "1px solid blue",
-    marginLeft: "220px"
+    marginLeft: "200px"
   },
   HomeWhish: {
     height: "55px",
@@ -30,6 +30,7 @@ const useStyle = makeStyles({
   },
   MainWhish: {
     height: "55px",
+    width: "939px",
     border: "1px solid #E4E4E4",
     display: "flex",
     alignItems: "center",
@@ -132,6 +133,207 @@ const useStyle = makeStyles({
     justifyContent: "center",
     alignItems: "flex-end",
     color: "#FFFFFF"
+  },
+  ['@media only screen and (min-width :320px) and (max-width :480px)']: {
+    WhishlistBox: {
+      width: "80vw",
+      height: "auto",
+      marginLeft: "35px"
+    },
+    HomeWhish: {
+      height: "55px",
+    },
+    MainWhish: {
+      height: "55px",
+      width: "250px",
+      "& #myWhishlist": {
+        left: "10px",
+      }
+    },
+    whish_list: {
+      width: "250px",
+      height: "120px",
+    },
+    WishImg: {
+      width: "280px",
+      height: "60px",
+      position: "relative",
+      left: "20px",
+    },
+    WishDetails: {
+      width: "130px",
+      height: "85px",
+      left: "30px",
+    },
+    WishBookDetails: {
+      width: "195px",
+      height: "88px",
+      top: "8px",
+      "& #book-name": {
+        fontSize: "14px",
+      },
+      "& #author-name": {
+        fontSize: "12px"
+      },
+      "& #dic-price": {
+        fontSize: "14px",
+      },
+      "& #actual-price": {
+        fontSize: "10px",
+        position: "relative",
+        left: "58px",
+        bottom: "22px"
+      },
+    },
+    DeleteIcon: {
+      width: "500px",
+      height: "72px",
+      left: "0px",
+      "& #delete":{
+        position: "relative",
+        right:"10px",
+      }
+    },
+    MainFooter: {
+      width: "100vw",
+      height: "8vh",
+      top: "80px",
+      left: "0px"
+    },
+    footer: {
+      width: "100%",
+      height: "60%",
+      fontSize: "10px"
+    },
+  },
+  ['@media only screen and (min-width :481px) and (max-width :768px)']: {
+    WhishlistBox: {
+      width: "80vw",
+      height: "auto",
+      marginLeft: "45px"
+    },
+    HomeWhish: {
+      height: "55px",
+    },
+    MainWhish: {
+      height: "55px",
+      width: "370px",
+      "& #myWhishlist": {
+        left: "10px",
+      }
+    },
+    whish_list: {
+      width: "370px",
+      height: "140px",
+    },
+    WishImg: {
+      width: "130px",
+      height: "65px",
+      position: "relative",
+      left: "20px",     
+    },
+    WishDetails: {
+      width: "200px",
+      height: "85px",
+      left: "30px",
+    },
+    WishBookDetails: {
+      height: "85px",
+      position: "relative",
+      top: "5px",
+      "& #book-name": {
+        fontSize: "18px",
+      },
+      "& #author-name": {
+        fontSize: "12px"
+      },
+      "& #dic-price": {
+        fontSize: "15px",
+      },
+      "& #actual-price": {
+        fontSize: "11px",
+        position: "relative",
+        left: "60px",
+        bottom: "20px"
+      },
+    },
+    DeleteIcon: {
+      width: "400px",
+      height: "85px",
+      left: "0px",
+      "& #delete":{
+        position: "relative",
+        right:"20px",
+      }
+    },
+    MainFooter: {
+      width: "100vw",
+      height: "8vh",
+      top: "250px",
+      left: "0px"
+    },
+    footer: {
+      width: "100%",
+      height: "60%",
+      fontSize: "10px"
+    },
+  },
+  ['@media only screen and (min-width :769px) and (max-width :1024px)']: {
+    WhishlistBox: {
+      width: "80vw",
+      height: "auto",
+      marginLeft: "95px"
+    },
+    HomeWhish: {
+      height: "55px",
+    },
+    MainWhish: {
+      height: "55px",
+      width: "570px",
+      "& #myWhishlist": {
+        left: "10px",
+      }
+    },
+    whish_list: {
+      width: "570px",
+      height: "140px",
+    },
+    WishImg: {
+      width: "60px",
+      height: "65px",
+      position: "relative",
+      left: "20px"
+    },
+    WishDetails: {
+      width: "170px",
+      height: "85px",
+      left: "40px",
+    },
+    WishBookDetails: {
+      height: "85px",
+      position: "relative",
+      top: "5px",
+    },
+    DeleteIcon: {
+      width: "400px",
+      height: "85px",
+      left: "0px",
+      "& #delete":{
+        position: "relative",
+        right:"20px",
+      }
+    },
+    MainFooter: {
+      width: "100vw",
+      height: "8vh",
+      top: "470px",
+      left: "0px"
+    },
+    footer: {
+      width: "70%",
+      height: "60%",
+      fontSize: "14px"
+    },
   }
 })
 
@@ -156,7 +358,7 @@ function Whishlist() {
       setRefreshPage()
     }).catch((error => console.log(error)))
   }
-  const goToHome = () =>{
+  const goToHome = () => {
     navigate('/dashboard')
   }
 
@@ -193,7 +395,7 @@ function Whishlist() {
       </Box>
       <Box className={classes.MainFooter}>
         <Box className={classes.footer}>
-          <span>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</span>
+          <span>Copyright © 2022, Bookstore Private Limited. All Rights Reserved</span>
         </Box>
       </Box>
     </Box>
